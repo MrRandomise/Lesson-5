@@ -1,20 +1,20 @@
-using SaveLoadCore;
-using Service;
+using SaveLoadCore.UIView;
 using UnityEngine;
 using Zenject;
 
-namespace Installer
+namespace SaveLoadCore
 {
     public sealed class SaveLoadInstaller : MonoInstaller
     {
-        [SerializeField] private SaveObjectsService _saveObjectlist;
+        [SerializeField] private SaveComponentsService _saveObjectlist;
 
         public override void InstallBindings()
         {
-            Container.Bind<SaveObjectsService>().FromInstance(_saveObjectlist).AsSingle();
+            Container.Bind<SaveComponentsService>().FromInstance(_saveObjectlist).AsSingle();
 
-            Container.BindInterfacesAndSelfTo<SaveLoad>().AsSingle().Lazy();
+            //Container.BindInterfacesAndSelfTo<SaveLoad>().AsSingle().NonLazy();
 
+            Container.Bind<SaveLoadMenuInitializeManager>().AsSingle();
             Container.Bind<ScreenCamera>().AsSingle();
             //Container.BindInterfacesAndSelfTo<ClosePopup>().AsSingle();
             //Container.Bind<AddStatsButton>().AsSingle();

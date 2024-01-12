@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Sirenix.OdinInspector;
+using System;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -24,7 +24,7 @@ namespace GameEngine
         {
             this.container = container;
         }
-        
+
         public void SetupUnits(IEnumerable<Unit> units)
         {
             this.sceneUnits = new HashSet<Unit>(units);

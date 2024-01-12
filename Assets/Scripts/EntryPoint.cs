@@ -10,7 +10,7 @@ public sealed class EntryPoint : MonoBehaviour
 
     [SerializeField]
     private ResourceService resourceService;
-    
+
     private void Start()
     {
         this.unitManager.SetupUnits(FindObjectsOfType<Unit>());

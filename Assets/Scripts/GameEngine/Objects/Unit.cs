@@ -20,7 +20,7 @@ namespace GameEngine
         {
             get => this.transform.position;
         }
-        
+
         public Vector3 Rotation
         {
             get => this.transform.eulerAngles;
@@ -28,7 +28,7 @@ namespace GameEngine
 
         [SerializeField]
         private string type;
-        
+
         [SerializeField]
         private int hitPoints;
 

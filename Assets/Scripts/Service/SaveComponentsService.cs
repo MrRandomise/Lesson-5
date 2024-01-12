@@ -1,15 +1,14 @@
 using System;
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
-namespace Service
+namespace SaveLoadCore
 {
     [Serializable]
-    public sealed class SaveObjectsService
+    public sealed class SaveComponentsService
     {
         public List<GameObject> SaveObjectList = new List<GameObject>();
 
         public Camera ScreenCamera;
     }
 }
-

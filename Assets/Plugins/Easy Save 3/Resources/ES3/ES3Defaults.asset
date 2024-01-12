@@ -34,7 +34,6 @@ MonoBehaviour:
     - Assembly-CSharp-firstpass
     - GameEngine
     - Purchasing.Common
-    - SaveSystem
     - Zenject
     - Zenject-IntegrationTests
     - Zenject-IntegrationTests-Editor
