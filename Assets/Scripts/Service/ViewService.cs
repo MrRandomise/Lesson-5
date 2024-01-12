@@ -8,7 +8,6 @@ namespace SaveLoadCore.UIView
     {
         public SaveLoadComponents SaveLoadMenu;
         public SaveLoadProcessing SaveLoadProcessing;
-        public SaveLoadContent SaveLoadContent;
         public GameObject SaveLoadItemPrefab;
     }
 }

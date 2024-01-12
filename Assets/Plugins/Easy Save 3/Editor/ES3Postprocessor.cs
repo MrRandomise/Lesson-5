@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
 using UnityEditor;
+using UnityEditor.Callbacks;
 using UnityEditor.SceneManagement;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
+using System.Reflection;
+using ES3Internal;
 
 
 /*
@@ -84,7 +88,7 @@ public class ES3Postprocessor : UnityEditor.AssetModificationProcessor
     static void ComponentWasAdded(Component c)
     {
         var scene = c.gameObject.scene;
-
+        
         if (!scene.isLoaded)
             return;
 
@@ -100,7 +104,7 @@ public class ES3Postprocessor : UnityEditor.AssetModificationProcessor
         if (EditorApplication.isUpdating || Application.isPlaying || !ES3Settings.defaultSettingsScriptableObject.autoUpdateReferences || !ES3Settings.defaultSettingsScriptableObject.updateReferencesWhenSceneChanges)
             return;
 
-        for (int i = 0; i < stream.length; i++)
+            for (int i = 0; i < stream.length; i++)
         {
             var eventType = stream.GetEventType(i);
             int[] instanceIds;
@@ -170,7 +174,7 @@ public class ES3Postprocessor : UnityEditor.AssetModificationProcessor
         // Don't refresh references when the application is playing.
         if (!EditorApplication.isUpdating && !Application.isPlaying)
         {
-            if (ES3Settings.defaultSettingsScriptableObject.autoUpdateReferences && ES3Settings.defaultSettingsScriptableObject.updateReferencesWhenSceneIsSaved)
+            if(ES3Settings.defaultSettingsScriptableObject.autoUpdateReferences && ES3Settings.defaultSettingsScriptableObject.updateReferencesWhenSceneIsSaved)
                 RefreshReferences();
             UpdateAssembliesContainingES3Types();
         }

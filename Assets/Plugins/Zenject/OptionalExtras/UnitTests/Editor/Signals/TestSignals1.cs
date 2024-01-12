@@ -1,5 +1,5 @@
-using NUnit.Framework;
 using System;
+using NUnit.Framework;
 using Assert = ModestTree.Assert;
 
 namespace Zenject.Tests.Signals
@@ -75,7 +75,7 @@ namespace Zenject.Tests.Signals
 
             var signalBus = Container.Resolve<SignalBus>();
 
-            Action callback = () => { };
+            Action callback = () => {};
 
             Assert.Throws(() => signalBus.Unsubscribe<FooSignal>(callback));
 

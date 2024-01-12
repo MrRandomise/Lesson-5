@@ -1,6 +1,6 @@
 
 public interface ISaveLoad
 {
-    void Save();
-    SaveDataStruct Load(string name);
+    void Save(SaveDataStruct saveData);
+    SaveDataStruct Load(string filename);
 }

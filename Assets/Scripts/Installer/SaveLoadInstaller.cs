@@ -12,10 +12,14 @@ namespace SaveLoadCore
         {
             Container.Bind<SaveComponentsService>().FromInstance(_saveObjectlist).AsSingle();
 
-            //Container.BindInterfacesAndSelfTo<SaveLoad>().AsSingle().NonLazy();
+            Container.Bind<ScreenCamera>().AsSingle();
 
             Container.Bind<SaveLoadMenuInitializeManager>().AsSingle();
-            Container.Bind<ScreenCamera>().AsSingle();
+
+            Container.BindInterfacesAndSelfTo<SaveLoad>().AsSingle();
+
+            Container.Bind<SaveButton>().AsSingle().NonLazy();
+
             //Container.BindInterfacesAndSelfTo<ClosePopup>().AsSingle();
             //Container.Bind<AddStatsButton>().AsSingle();
         }

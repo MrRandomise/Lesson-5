@@ -1,4 +1,5 @@
 using System.Numerics;
+using UnityEngine;
 
 namespace ES3Types
 {

@@ -2,6 +2,9 @@
  * System.Random is no longer serializable at runtime due to Unity changing the implementation away from .NET.
  */
 
+using System;
+using UnityEngine;
+
 namespace ES3Types
 {
 #if !UNITY_2021_2_OR_NEWER

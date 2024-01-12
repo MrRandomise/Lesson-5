@@ -1,10 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 using System.IO;
-using UnityEngine.UIElements;
-using System.ComponentModel;
 
 namespace SaveLoadCore.UIView
 {
@@ -25,26 +22,26 @@ namespace SaveLoadCore.UIView
             _diContainer = diContainer;
             _saveLoad = saveLoad;
             _screenCamera = screenCamera;
-            ClearSaveContainer();
         }
 
         public void ClearSaveContainer()
         {
             _contetList.Clear();
-            for (int i = 0; i < _saveContainer.transform.GetChild(0).childCount; i++)
+            for (int i = 0; i < _saveContainer.transform.childCount; i++)
             {
-                _contetList.Add(_saveContainer.transform.GetChild(0).GetChild(i).gameObject);
-                _saveContainer.transform.GetChild(0).GetChild(i).gameObject.SetActive(false);
+                _contetList.Add(_saveContainer.transform.GetChild(i).gameObject);
+                _saveContainer.transform.GetChild(i).gameObject.SetActive(false);
             }
         }
 
         public void PreViewSave()
         {
             ClearSaveContainer();
-            var Files = Directory.GetFiles(Application.dataPath + "/Saves", "*", SearchOption.AllDirectories);
+            var Files = Directory.GetFiles(Application.dataPath + "/Saves/", "*.sav", SearchOption.AllDirectories);
             AddNewLoadItem(Files);
-            for(int i = 0; i < _contetList.Count; i++)
+            for (int i = 0; i < Files.Length; i++)
             {
+                _contetList[i].gameObject.SetActive(true);
                 var item = _contetList[i].GetComponent<SaveLoadContent>();
                 var data = _saveLoad.Load(Files[i]);
                 _screenCamera.TryLoadCameraView(data.SaveScreen, out var screen);
@@ -55,7 +52,6 @@ namespace SaveLoadCore.UIView
 
         private void AddNewLoadItem(string[] files)
         {
-            
             if (files.Length > _contetList.Count)
             {
                 var newCount = files.Length - _contetList.Count;

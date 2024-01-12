@@ -1,6 +1,6 @@
 ﻿
-using ModestTree;
 using System.Collections;
+using ModestTree;
 using UnityEngine;
 using UnityEngine.TestTools;
 using Zenject.Tests.Factories.BindFactoryOne;

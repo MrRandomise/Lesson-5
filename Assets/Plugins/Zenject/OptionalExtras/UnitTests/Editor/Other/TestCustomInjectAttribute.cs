@@ -1,6 +1,6 @@
 
-using NUnit.Framework;
 using System;
+using NUnit.Framework;
 using Zenject.Internal;
 using Assert = ModestTree.Assert;
 
