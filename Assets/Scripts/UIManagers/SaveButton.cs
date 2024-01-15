@@ -25,10 +25,17 @@ namespace SaveLoadCore.UIView
         private void clickSaveButton()
         {
             var data = new SaveDataStruct();
-            data.SaveName = UnityEngine.Random.Range(0, 1000).ToString();
-            data.SaveDate = DateTime.Now;
-            data.SaveScreen = _screenCamer.TrySaveCameraView(_camera);
-            _saveLoad.Save(data);
+            var dataInf = new SaveDataStructInfo();
+            var dataImage = new SaveDataStructImage();
+
+            dataInf.SaveName = UnityEngine.Random.Range(0, 1000).ToString();
+            dataInf.SaveDate = DateTime.Now;
+            dataImage.SaveScreen = _screenCamer.TrySaveCameraView(_camera);
+
+            data.SaveInfo = dataInf;
+            data.Screen = dataImage;
+
+            _saveLoad.SaveAll(data);
         }
 
         public void Dispose()

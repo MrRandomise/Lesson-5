@@ -43,10 +43,10 @@ namespace SaveLoadCore.UIView
             {
                 _contetList[i].gameObject.SetActive(true);
                 var item = _contetList[i].GetComponent<SaveLoadContent>();
-                var data = _saveLoad.Load(Files[i]);
-                _screenCamera.TryLoadCameraView(data.SaveScreen, out var screen);
+                var data = _saveLoad.LoadAll(Files[i]);
+                _screenCamera.TryLoadCameraView(data.Screen.SaveScreen, out var screen);
                 item.Screen.sprite = screen;
-                item.SaveName.text = data.SaveName;
+                item.SaveName.text = data.SaveInfo.SaveName;
             }
         }
 
@@ -57,8 +57,7 @@ namespace SaveLoadCore.UIView
                 var newCount = files.Length - _contetList.Count;
                 for (int i = 0; i < newCount; i++)
                 {
-                    var item = _diContainer.InstantiatePrefab(_saveLoadItem, _saveLoadItem.transform);
-                    item.transform.SetParent(_saveContainer.transform);
+                    var item = _diContainer.InstantiatePrefab(_saveLoadItem, _saveContainer.transform);
                     _contetList.Add(item);
                 }
             }
