@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using System.IO;
+using System;
 
 namespace SaveLoadCore.UIView
 {
@@ -36,17 +37,23 @@ namespace SaveLoadCore.UIView
 
         public void PreViewSave()
         {
-            ClearSaveContainer();
             var Files = Directory.GetFiles(Application.dataPath + "/Saves/", "*.sav", SearchOption.AllDirectories);
+
+            ClearSaveContainer();
             AddNewLoadItem(Files);
+
             for (int i = 0; i < Files.Length; i++)
             {
                 _contetList[i].gameObject.SetActive(true);
                 var item = _contetList[i].GetComponent<SaveLoadContent>();
-                var data = _saveLoad.LoadAll(Files[i]);
-                _screenCamera.TryLoadCameraView(data.Screen.SaveScreen, out var screen);
-                item.Screen.sprite = screen;
-                item.SaveName.text = data.SaveInfo.SaveName;
+                _saveLoad.Load(Files[i], out var data);
+                if(data.SaveName != item.SaveName.text || data.SaveDate.ToString() != item.SaveDate.text) 
+                {
+                    _screenCamera.TryLoadCameraView(data.SaveScreen, out var screen);
+                    item.Screen.sprite = screen;
+                    item.SaveName.text = data.SaveName;
+                    item.SaveDate.text = data.SaveDate.ToString();
+                }
             }
         }
 

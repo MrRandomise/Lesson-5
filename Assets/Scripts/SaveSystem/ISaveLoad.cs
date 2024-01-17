@@ -1,19 +1,8 @@
 
 public interface ISaveLoad
 {
-    void SaveAll(SaveDataStruct saveData);
+    bool Save(SaveDataStruct saveData);
 
-    void SaveInfo(SaveDataStructInfo saveInfo, string name);
+    bool Load(string filename, out SaveDataStruct saveData);
 
-    void SaveScreen(SaveDataStructImage saveImage, string name);
-
-    void SaveData(SaveDataStructData saveData, string name);
-
-    SaveDataStruct LoadAll(string filename);
-
-    SaveDataStructInfo GetLoadInfo(string filename);
-
-    SaveDataStructImage GetLoadScreen(string filename);
-
-    SaveDataStructData GetLoadObjects(string filename);
 }

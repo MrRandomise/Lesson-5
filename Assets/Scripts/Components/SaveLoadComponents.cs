@@ -14,6 +14,8 @@ namespace SaveLoadCore.UIView
 
         public Button SaveButton;
 
+        public Button ReSave;
+
         public Button LoadButton;
 
         public Button AcceptFormYesBtn;
