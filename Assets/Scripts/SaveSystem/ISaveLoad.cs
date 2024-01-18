@@ -1,8 +1,10 @@
 
 public interface ISaveLoad
 {
-    bool Save(SaveDataStruct saveData);
+    bool SaveFile(SaveDataStruct saveData);
 
-    bool Load(string filename, out SaveDataStruct saveData);
+    bool LoadFile(string filename, out SaveDataStruct saveData);
 
+    void SaveData();
+    void LoadData();
 }

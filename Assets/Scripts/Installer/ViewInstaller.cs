@@ -15,6 +15,16 @@ namespace SaveLoadCore.UIView
             Container.Bind<MenuButtonService>().FromInstance(_menuButtonService).AsSingle();
 
             Container.Bind<ShowMenu>().AsSingle().NonLazy();
+
+            Container.Bind<SaveButton>().AsSingle().NonLazy();
+
+            Container.Bind<SaveForm>().AsSingle().NonLazy();
+
+            Container.Bind <SaveAcceptForm>().AsSingle().NonLazy();
+
+            Container.Bind<LoadButton>().AsSingle().NonLazy();
+
+            Container.Bind<SelectedItems>().AsSingle().NonLazy();
         }
     }
 }

@@ -1,5 +1,6 @@
-using Sirenix.Serialization;
-using System.Threading.Tasks;
+using SaveLoadCore.UIView;
+using System.Collections.Generic;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -10,13 +11,26 @@ namespace SaveLoadCore
         private ES3Settings _saveSetting;
         private const string _secretCryptKey = "1234";
         private const string _info = "SaveInfo";
+        private Camera _camera;
+        private ScreenCamera _screenCamer;
+        private ViewService _viewService;
+        private List<GameObject> _saveObjectList;
+
+        [Inject]
+        private void Construct(ScreenCamera screenCamer, SaveComponentsService saveComponentsService, ViewService viewService)
+        {
+            _screenCamer = screenCamer;
+            _camera = saveComponentsService.ScreenCamera;
+            _viewService = viewService;
+            _saveObjectList = saveComponentsService.SaveObjectList;
+        }
 
         public void Initialize()
         {
             _saveSetting = new ES3Settings(ES3.EncryptionType.AES, _secretCryptKey);
         }
 
-        public bool Save(SaveDataStruct saveData)
+        public bool SaveFile(SaveDataStruct saveData)
         {
             var filename = $"{Application.dataPath}/Saves/{saveData.SaveName}.sav";
             try
@@ -36,7 +50,7 @@ namespace SaveLoadCore
             }
         }
 
-        public bool Load(string filename, out SaveDataStruct loadData)
+        public bool LoadFile(string filename, out SaveDataStruct loadData)
         {
             try
             {
@@ -55,6 +69,34 @@ namespace SaveLoadCore
                 loadData = new SaveDataStruct();
                 return false;
             }
+        }
+
+        public void SaveData()
+        {
+            var data = new SaveDataStruct();
+            var obj = new List<GameObject>();
+
+            data.SaveName = _viewService.SaveLoadMenu.SaveFormInputName.text;
+            data.SaveDate = DateTime.Now;
+            data.SaveScreen = _screenCamer.TrySaveCameraView(_camera);
+            data.SaveObjects = new List<List<GameObject>>();
+
+
+            foreach (GameObject components in _saveObjectList)
+            {
+                for (int i = 0; i < components.transform.childCount; i++)
+                {
+                    obj.Add(components.transform.GetChild(i).gameObject);
+                }
+                data.SaveObjects.Add(obj);
+            }
+
+            SaveFile(data);
+        }
+
+        public void LoadData()
+        {
+
         }
     }
 }

@@ -9,6 +9,8 @@ namespace SaveLoadCore.UIView
         public Image Screen;
         public TMP_Text SaveName;
         public TMP_Text SaveDate;
+        public GameObject SelectedItem;
+        public TMP_Text HideField;
     }
 }
 

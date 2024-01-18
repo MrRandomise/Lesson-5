@@ -17,11 +17,6 @@ namespace SaveLoadCore
             Container.Bind<SaveLoadMenuInitializeManager>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<SaveLoad>().AsSingle();
-
-            Container.Bind<SaveButton>().AsSingle().NonLazy();
-
-            //Container.BindInterfacesAndSelfTo<ClosePopup>().AsSingle();
-            //Container.Bind<AddStatsButton>().AsSingle();
         }
     }
 }

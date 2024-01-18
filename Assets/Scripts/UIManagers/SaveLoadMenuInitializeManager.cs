@@ -46,13 +46,14 @@ namespace SaveLoadCore.UIView
             {
                 _contetList[i].gameObject.SetActive(true);
                 var item = _contetList[i].GetComponent<SaveLoadContent>();
-                _saveLoad.Load(Files[i], out var data);
+                _saveLoad.LoadFile(Files[i], out var data);
                 if(data.SaveName != item.SaveName.text || data.SaveDate.ToString() != item.SaveDate.text) 
                 {
                     _screenCamera.TryLoadCameraView(data.SaveScreen, out var screen);
                     item.Screen.sprite = screen;
                     item.SaveName.text = data.SaveName;
                     item.SaveDate.text = data.SaveDate.ToString();
+                    item.HideField.text = Files[i];
                 }
             }
         }
@@ -69,6 +70,8 @@ namespace SaveLoadCore.UIView
                 }
             }
         }
+
+
     }
 }
 
