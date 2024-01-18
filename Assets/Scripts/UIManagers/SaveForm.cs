@@ -1,9 +1,11 @@
 using System.IO;
 using Zenject;
+using UnityEngine;
+using System;
 
 namespace SaveLoadCore.UIView
 {
-    public sealed class SaveForm 
+    public sealed class SaveForm: IDisposable
     {
         private ViewService _viewService;
         private SaveLoad _saveLoad;
@@ -19,13 +21,16 @@ namespace SaveLoadCore.UIView
 
         private void ClickSaveButton()
         { 
-            if(File.Exists(_viewService.SaveLoadMenu.SaveFormInputName.text))
+            if(File.Exists($"{Application.dataPath}/Saves/{_viewService.SaveLoadMenu.SaveFormInputName.text}.sav"))
             {
                 _viewService.SaveLoadMenu.AcceptForm.SetActive(true);
+                _viewService.SaveLoadMenu.SaveForm.SetActive(false);
             }
             else
             {
-                _saveLoad.SaveData();
+                _saveLoad.SaveData(_viewService.SaveLoadMenu.SaveFormInputName.text);
+                _viewService.SaveLoadMenu.SaveFormInputName.text = string.Empty;
+                _viewService.SaveLoadMenu.SaveForm.SetActive(false);
             }
         }
 

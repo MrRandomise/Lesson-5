@@ -1,4 +1,3 @@
-using SaveLoadCore.UIView;
 using UnityEngine;
 using Zenject;
 
@@ -14,9 +13,11 @@ namespace SaveLoadCore
 
             Container.Bind<ScreenCamera>().AsSingle();
 
-            Container.Bind<SaveLoadMenuInitializeManager>().AsSingle();
+            Container.Bind<LoadManager>().AsSingle();
 
-            Container.BindInterfacesAndSelfTo<SaveLoad>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SaveLoadFactory>().AsSingle();
+
+            Container.BindInterfacesAndSelfTo<SaveLoad>().AsSingle().NonLazy();
         }
     }
 }

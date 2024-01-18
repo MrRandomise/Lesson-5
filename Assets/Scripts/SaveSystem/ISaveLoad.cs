@@ -5,6 +5,6 @@ public interface ISaveLoad
 
     bool LoadFile(string filename, out SaveDataStruct saveData);
 
-    void SaveData();
-    void LoadData();
+    void SaveData(string name);
+    void LoadData(string name);
 }

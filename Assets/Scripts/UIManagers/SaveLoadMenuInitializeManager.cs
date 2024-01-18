@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using System.IO;
-using System;
 
 namespace SaveLoadCore.UIView
 {
@@ -11,18 +10,18 @@ namespace SaveLoadCore.UIView
         private GameObject _saveContainer;
         private List<GameObject> _contetList = new List<GameObject>();
         private GameObject _saveLoadItem;
-        private DiContainer _diContainer;
         private SaveLoad _saveLoad;
         private ScreenCamera _screenCamera;
+        private SaveLoadFactory _saveLoadFactory;
 
         [Inject]
-        private void Construct(ViewService viewService, DiContainer diContainer, SaveLoad saveLoad, ScreenCamera screenCamera)
+        private void Construct(ViewService viewService, SaveLoad saveLoad, ScreenCamera screenCamera, SaveLoadFactory saveLoadFactory)
         {
             _saveContainer = viewService.SaveLoadMenu.SaveLoadContainer;
             _saveLoadItem = viewService.SaveLoadItemPrefab;
-            _diContainer = diContainer;
             _saveLoad = saveLoad;
             _screenCamera = screenCamera;
+            _saveLoadFactory = saveLoadFactory;
         }
 
         public void ClearSaveContainer()
@@ -65,13 +64,11 @@ namespace SaveLoadCore.UIView
                 var newCount = files.Length - _contetList.Count;
                 for (int i = 0; i < newCount; i++)
                 {
-                    var item = _diContainer.InstantiatePrefab(_saveLoadItem, _saveContainer.transform);
+                    var item = _saveLoadFactory.Creator(_saveLoadItem, _saveContainer.transform);
                     _contetList.Add(item);
                 }
             }
         }
-
-
     }
 }
 

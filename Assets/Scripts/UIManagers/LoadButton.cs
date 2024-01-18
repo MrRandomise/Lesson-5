@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using UnityEngine;
 using Zenject;
 
 namespace SaveLoadCore.UIView
@@ -9,35 +7,22 @@ namespace SaveLoadCore.UIView
     {
         private ViewService _viewService;
         private SaveLoad _load;
-        private List<GameObject> _loadObjectList;
-        private SelectedItems _selectedItems;
-        private SaveLoadContent _saveLoadContent;
+        private SaveLoadSelectedItems _selectedItems;
 
         [Inject]
-        private void Construct(SaveComponentsService saveComponentsService, ViewService viewService, SaveLoad saveLoad, SelectedItems selectedItems)
+        private void Construct(ViewService viewService, SaveLoadSelectedItems selectedItems, SaveLoad saveLoad)
         {
             _viewService = viewService;
-            _load = saveLoad;
-            _loadObjectList = saveComponentsService.SaveObjectList;
-            _selectedItems = selectedItems;
-
             _viewService.SaveLoadMenu.LoadButton.onClick.AddListener(ClickLoadButton);
+            _selectedItems = selectedItems;
+            _load = saveLoad;
         }
 
         private void ClickLoadButton()
         {
-            _saveLoadContent = _selectedItems.getSelectedItems();
-            var savefile = _saveLoadContent.HideField.text;
+            var name = _selectedItems.getSelectedItems().HideField.text;
+            _load.LoadData(name);
             _viewService.SaveLoadMenu.gameObject.SetActive(false);
-            _load.LoadFile(savefile, out var data);
-
-            for (int i = 0; i < data.SaveObjects.Count; i++)
-            { 
-                for (int j = 0; j < data.SaveObjects[i].Count; j++)
-                {
-                    //_loadObjectList[i].transform.GetChild(j).transform = data.SaveObjects[i][j].transform;
-                }
-            }
         }
 
         public void Dispose()

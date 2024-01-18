@@ -9,6 +9,10 @@ namespace SaveLoadCore
     {
         public List<GameObject> SaveObjectList = new List<GameObject>();
 
+        public GameObject ObjectContainer;
+
+        public GameObject ObjectContainerPrefab;
+
         public Camera ScreenCamera;
     }
 }

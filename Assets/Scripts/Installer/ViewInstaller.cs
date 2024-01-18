@@ -24,7 +24,11 @@ namespace SaveLoadCore.UIView
 
             Container.Bind<LoadButton>().AsSingle().NonLazy();
 
-            Container.Bind<SelectedItems>().AsSingle().NonLazy();
+            Container.Bind<ReSaveButton>().AsSingle().NonLazy();
+
+            Container.Bind<SaveLoadSelectedItems>().AsSingle().NonLazy();
+
+            Container.Bind<SaveLoadMenuInitializeManager>().AsSingle().NonLazy();
         }
     }
 }

@@ -1,8 +1,8 @@
-using SaveLoadCore.UIView;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
 using Zenject;
+using UnityEditor;
 
 namespace SaveLoadCore
 {
@@ -13,16 +13,16 @@ namespace SaveLoadCore
         private const string _info = "SaveInfo";
         private Camera _camera;
         private ScreenCamera _screenCamer;
-        private ViewService _viewService;
         private List<GameObject> _saveObjectList;
+        private LoadManager _loadManager;
 
         [Inject]
-        private void Construct(ScreenCamera screenCamer, SaveComponentsService saveComponentsService, ViewService viewService)
+        private void Construct(ScreenCamera screenCamer, SaveComponentsService saveComponentsService, LoadManager loadManager)
         {
             _screenCamer = screenCamer;
             _camera = saveComponentsService.ScreenCamera;
-            _viewService = viewService;
             _saveObjectList = saveComponentsService.SaveObjectList;
+            _loadManager = loadManager;
         }
 
         public void Initialize()
@@ -54,7 +54,10 @@ namespace SaveLoadCore
         {
             try
             {
-                loadData = ES3.Load<SaveDataStruct>(_info, filename, _saveSetting);
+                var test = new SaveDataStruct();
+                ES3.LoadInto(_info, filename, test, _saveSetting);
+                loadData = test;
+                Debug.Log(loadData.SaveObjects[0][0].name + " " + loadData.SaveObjects[0][0].transform.position.x);
                 return true;
             }
             catch (System.IO.IOException)
@@ -71,32 +74,32 @@ namespace SaveLoadCore
             }
         }
 
-        public void SaveData()
+        public void SaveData(string name)
         {
             var data = new SaveDataStruct();
             var obj = new List<GameObject>();
 
-            data.SaveName = _viewService.SaveLoadMenu.SaveFormInputName.text;
+            data.SaveName = name;
             data.SaveDate = DateTime.Now;
             data.SaveScreen = _screenCamer.TrySaveCameraView(_camera);
             data.SaveObjects = new List<List<GameObject>>();
 
-
-            foreach (GameObject components in _saveObjectList)
+            for(int i = 0; i < _saveObjectList.Count; i++) 
             {
-                for (int i = 0; i < components.transform.childCount; i++)
+                var list = new List<GameObject>();
+                for (int j = 0; j < _saveObjectList[i].transform.childCount; j++)
                 {
-                    obj.Add(components.transform.GetChild(i).gameObject);
+                    list.Add(_saveObjectList[i].transform.GetChild(j).gameObject);
                 }
-                data.SaveObjects.Add(obj);
+                data.SaveObjects.Add(list);
             }
-
             SaveFile(data);
         }
 
-        public void LoadData()
+        public void LoadData(string name)
         {
-
+            LoadFile(name, out var data);
+            //_loadManager.LoadNewObjectToScene(data.SaveObjects);
         }
     }
 }
