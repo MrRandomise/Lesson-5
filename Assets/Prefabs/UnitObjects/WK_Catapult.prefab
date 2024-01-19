@@ -444,6 +444,7 @@ GameObject:
   m_Component:
   - component: {fileID: 485194}
   - component: {fileID: 6467707349054415413}
+  - component: {fileID: 4215122709314945816}
   m_Layer: 0
   m_Name: WK_Catapult
   m_TagString: Untagged
@@ -481,6 +482,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: WK_Catapult
   hitPoints: 10
+--- !u!114 &4215122709314945816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baff8732cd3074ef88b34f9cc487846d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabId: 6275179209216849716
+  localRefs:
+    _Keys:
+    - {fileID: 3353178}
+    - {fileID: 4215122709314945816}
+    - {fileID: 446486}
+    - {fileID: 6467707349054415413}
+    - {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+    - {fileID: 2800000, guid: 3c03ff7fbaabf814f8b7df067e0a957b, type: 3}
+    - {fileID: 2100000, guid: c805af27b738e394989b29f718f5c17e, type: 2}
+    - {fileID: 4300000, guid: e6cb1da57f12ded4b86aed40b45ae3aa, type: 3}
+    - {fileID: 4300002, guid: e6cb1da57f12ded4b86aed40b45ae3aa, type: 3}
+    - {fileID: 13740462}
+    - {fileID: 115768}
+    - {fileID: 2346834}
+    - {fileID: 121924}
+    - {fileID: 152856}
+    - {fileID: 436856}
+    - {fileID: 164276}
+    - {fileID: 115056}
+    - {fileID: 416272}
+    - {fileID: 483942}
+    - {fileID: 466226}
+    - {fileID: 475044}
+    - {fileID: 146188}
+    - {fileID: 495368}
+    - {fileID: 190284}
+    - {fileID: 142710}
+    - {fileID: 150474}
+    - {fileID: 193696}
+    - {fileID: 137084}
+    - {fileID: 129462}
+    - {fileID: 443864}
+    - {fileID: 194750}
+    - {fileID: 476108}
+    - {fileID: 472100}
+    - {fileID: 462880}
+    - {fileID: 403828}
+    - {fileID: 464016}
+    - {fileID: 485194}
+    - {fileID: 173382}
+    - {fileID: 11500000, guid: 1b30195530774198a17c549ed1b85bc2, type: 3}
+    - {fileID: 11500000, guid: baff8732cd3074ef88b34f9cc487846d, type: 3}
+    _Values: 7eb8ee27e541325115dc17e83d614d6dfd6fe3d892e4ab0790c94cb42086902912909de7c8a9e912a31c33c05fea9b660f6f285f030543670de6971cf57e316494be063201cbca5386d17cae186b667a65b2c38faeef2c162cfb251eed33e322b268ace20e329825397be5d482f17f5e7fe348bd455d4a5c6d10a1030f17bf46b59ffcafbf846b32e66137d52afe663a843961f515da220f4df6b0e02b63cb22bc9e8921ee2f1d034f7ad7e42675326fa967874978b55c257decfcb5344c5e7d9514198c75454b4d58654590b1073628c44036c4dc82a907be9c6224d42cc764d9544e115ba5f964e5c65f2205132975492b868a7ddda51395edb5ed588fde2b621e96f9aab87c1e47d1a8a2e1cc0c5574ed6dffb352e10451c559b6a4184254e8338524aa231f6e5198bc54cbfdcd61fb0b7a6b21df784b009a4a6f1132c25f
 --- !u!1 &190284
 GameObject:
   m_ObjectHideFlags: 0

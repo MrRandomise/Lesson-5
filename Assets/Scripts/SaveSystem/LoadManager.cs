@@ -17,38 +17,22 @@ namespace SaveLoadCore
             _loadObjectListName = saveComponentsService.SaveObjectList;
             _saveComponentsService = saveComponentsService;
             _loadFactory = saveLoadFactory;
-            GetNameObjectList();
         }
 
-        private void GetNameObjectList()
-        {
-            foreach (GameObject item in _loadObjectListName)
-            {
-                _objectListName.Add(item.name);
-            }
-        }
-
-        private void ClearScene()
-        {
-            foreach (GameObject item in _loadObjectListName)
-            {
-                Object.Destroy(item.gameObject);
-            }
-        }
-
-        public void LoadNewObjectToScene(List<List<GameObject>> items)
-        {
-            ClearScene();
-            for (int i = 0; i < items.Count; i++) 
-            {
-                var parent = _loadFactory.Creator(_saveComponentsService.ObjectContainerPrefab, _saveComponentsService.ObjectContainer.transform);
-                parent.name = _objectListName[i];
-                for (int j = 0; j < items[i].Count; j++) 
-                {
-                    var child = _loadFactory.Creator(items[i][j], parent.transform);
-                    child.transform.rotation = items[i][j].transform.rotation;
-                }
-            }
-        }
+        //public void LoadNewObjectToScene(List<GameObject> items)
+        //{
+        //    for (int i = 0; i < items.Count; i++) 
+        //    {
+        //        var parent = _loadFactory.Creator(_saveComponentsService.ObjectContainerPrefab, _saveComponentsService.ObjectContainer.transform);
+        //        parent.name = _objectListName[i];
+        //        _saveComponentsService.SaveObjectList.Add(parent);
+        //        for (int j = 0; j < items[i].Count; j++) 
+        //        {
+        //            var child = _loadFactory.Creator(items[i][j], parent.transform);
+        //            child.transform.rotation = items[i][j].transform.rotation;
+        //        }
+        //    }
+        //    _loadObjectListName = _saveComponentsService.SaveObjectList;
+        //}
     }
 }

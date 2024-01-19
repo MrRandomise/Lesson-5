@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 419652}
   - component: {fileID: 4917966256930646285}
+  - component: {fileID: -6729225594263476382}
   m_Layer: 0
   m_Name: Orc_Catapult
   m_TagString: Untagged
@@ -48,6 +49,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: Orc_Catapult
   hitPoints: 8
+--- !u!114 &-6729225594263476382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baff8732cd3074ef88b34f9cc487846d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabId: 9059513633696379031
+  localRefs:
+    _Keys:
+    - {fileID: 3340234}
+    - {fileID: -6729225594263476382}
+    - {fileID: 419652}
+    - {fileID: 463026}
+    - {fileID: 448654}
+    - {fileID: 409710}
+    - {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+    - {fileID: 404118}
+    - {fileID: 177998}
+    - {fileID: 466474}
+    - {fileID: 453798}
+    - {fileID: 118144}
+    - {fileID: 13785698}
+    - {fileID: 139386}
+    - {fileID: 103566}
+    - {fileID: 142536}
+    - {fileID: 170856}
+    - {fileID: 147680}
+    - {fileID: 100838}
+    - {fileID: 406676}
+    - {fileID: 471246}
+    - {fileID: 141716}
+    - {fileID: 108496}
+    - {fileID: 173738}
+    - {fileID: 2800000, guid: 2e6e1c5e4901689499d739a186335b5e, type: 3}
+    - {fileID: 423792}
+    - {fileID: 441520}
+    - {fileID: 112604}
+    - {fileID: 4300000, guid: 12478272612479b49a67011040825455, type: 3}
+    - {fileID: 428876}
+    - {fileID: 2100000, guid: adebc4a0d66adc04e8b1aeec86b3e9d6, type: 2}
+    - {fileID: 11500000, guid: 1b30195530774198a17c549ed1b85bc2, type: 3}
+    - {fileID: 175006}
+    - {fileID: 183296}
+    - {fileID: 11500000, guid: baff8732cd3074ef88b34f9cc487846d, type: 3}
+    - {fileID: 2390184}
+    - {fileID: 477770}
+    - {fileID: 4300002, guid: 12478272612479b49a67011040825455, type: 3}
+    - {fileID: 4917966256930646285}
+    - {fileID: 448518}
+    _Values: ec0275eaaecfff50ceffae1b958d3852f8f7bc989dd7330844c6dbba92707f7c5b1c68c988e2b32a0d2a9d22305db5712d6298f611a50213d06d2e74abbae23e7f2bc079246fca1545918c733a10d75e7b4de7f509758e4a1a55f91ab33f7f51b8a15bfa63c3b242677c4d80e67026416a2f10075d28b70cba0b5fcf75af6204133a2bdb6cd2c2489aa48d8c270d64757d3a85e34f86af70e94fb36e2381b817df5292219c02ad3cf2586cb89a2be439902bacc4d5814b7474443b4479ce9418158a522a85bd267ee8c1d5a8f3680a416a7adef7d4f4425d071eac57c668c223c353cc257d0fbe4eaed45369a90c9723b18226000f62bc08ceb032a36a7e45507b0694b8cad0405bbb90a5a947ab0613b5d007498fc33326f12a0dd1be9d472f70fd1a505eb0117fc482bc9f07654f79b845593a868fdf47d36ea8f5dd121a59
 --- !u!1 &103566
 GameObject:
   m_ObjectHideFlags: 0

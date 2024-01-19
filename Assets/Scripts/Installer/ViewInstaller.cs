@@ -7,12 +7,14 @@ namespace SaveLoadCore.UIView
     {
         [SerializeField] private ViewService _viewService;
         [SerializeField] private MenuButtonService _menuButtonService;
-
+        [SerializeField] private buttonTest _buttonTest;
         public override void InstallBindings()
         {
             Container.Bind<ViewService>().FromInstance(_viewService).AsSingle();
 
             Container.Bind<MenuButtonService>().FromInstance(_menuButtonService).AsSingle();
+
+            Container.Bind<buttonTest>().FromInstance(_buttonTest).AsSingle(); 
 
             Container.Bind<ShowMenu>().AsSingle().NonLazy();
 

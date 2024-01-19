@@ -7,5 +7,5 @@ public struct SaveDataStruct
     public DateTime SaveDate;
     public string SaveName;
     public byte[] SaveScreen;
-    public List<List<GameObject>> SaveObjects;
+    public List<GameObject> SaveObjects;
 }

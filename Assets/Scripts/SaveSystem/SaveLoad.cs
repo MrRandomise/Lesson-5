@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using Zenject;
-using UnityEditor;
 
 namespace SaveLoadCore
 {
@@ -15,14 +14,18 @@ namespace SaveLoadCore
         private ScreenCamera _screenCamer;
         private List<GameObject> _saveObjectList;
         private LoadManager _loadManager;
+        
+        private List<GameObject> prefabInstances = new List<GameObject>();
 
         [Inject]
-        private void Construct(ScreenCamera screenCamer, SaveComponentsService saveComponentsService, LoadManager loadManager)
+        private void Construct(ScreenCamera screenCamer, SaveComponentsService saveComponentsService, LoadManager loadManager, buttonTest buttonTest)
         {
             _screenCamer = screenCamer;
             _camera = saveComponentsService.ScreenCamera;
             _saveObjectList = saveComponentsService.SaveObjectList;
             _loadManager = loadManager;
+            buttonTest.SaveButton.onClick.AddListener(SaveTest);
+            buttonTest.LoadButton.onClick.AddListener(LoadTest);
         }
 
         public void Initialize()
@@ -54,10 +57,7 @@ namespace SaveLoadCore
         {
             try
             {
-                var test = new SaveDataStruct();
-                ES3.LoadInto(_info, filename, test, _saveSetting);
-                loadData = test;
-                Debug.Log(loadData.SaveObjects[0][0].name + " " + loadData.SaveObjects[0][0].transform.position.x);
+                loadData = ES3.Load(_info, filename, new SaveDataStruct(), _saveSetting);
                 return true;
             }
             catch (System.IO.IOException)
@@ -77,20 +77,14 @@ namespace SaveLoadCore
         public void SaveData(string name)
         {
             var data = new SaveDataStruct();
-            var obj = new List<GameObject>();
 
             data.SaveName = name;
             data.SaveDate = DateTime.Now;
             data.SaveScreen = _screenCamer.TrySaveCameraView(_camera);
-            data.SaveObjects = new List<List<GameObject>>();
+            data.SaveObjects = new List<GameObject>();
 
-            for(int i = 0; i < _saveObjectList.Count; i++) 
+            foreach(GameObject list in _saveObjectList)
             {
-                var list = new List<GameObject>();
-                for (int j = 0; j < _saveObjectList[i].transform.childCount; j++)
-                {
-                    list.Add(_saveObjectList[i].transform.GetChild(j).gameObject);
-                }
                 data.SaveObjects.Add(list);
             }
             SaveFile(data);
@@ -99,7 +93,24 @@ namespace SaveLoadCore
         public void LoadData(string name)
         {
             LoadFile(name, out var data);
-            //_loadManager.LoadNewObjectToScene(data.SaveObjects);
+        }
+
+
+        public void SaveTest()
+        {
+            var filename = $"{Application.dataPath}/Saves/123.sav";
+            foreach (GameObject list in _saveObjectList)
+            {
+                prefabInstances.Add(list);
+            }
+            
+            ES3.Save("prefabInstances", prefabInstances, filename, _saveSetting);
+        }
+
+        public void LoadTest()
+        {
+            var filename = $"{Application.dataPath}/Saves/123.sav";
+            prefabInstances = ES3.Load("prefabInstances", filename, new List<GameObject>(), _saveSetting);
         }
     }
 }
