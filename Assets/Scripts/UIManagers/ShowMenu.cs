@@ -2,7 +2,6 @@ using System;
 using TMPro;
 using UnityEngine.UI;
 using Zenject;
-using UnityEngine;
 
 namespace SaveLoadCore.UIView
 {
@@ -11,11 +10,10 @@ namespace SaveLoadCore.UIView
         private Button _menuButton;
         private TMP_Text _menuButtonText;
         private SaveLoadComponents _saveLoadMenu;
-        private SaveLoadMenuInitializeManager _menuInitializeManager;
-        private bool isToogle = false;
+        private LoadPreview _menuInitializeManager;
 
         [Inject]
-        private void Construct(MenuButtonService menuButtonService, ViewService saveLoadMenu, SaveLoadMenuInitializeManager saveMenuManager)
+        private void Construct(MenuButtonService menuButtonService, ViewService saveLoadMenu, LoadPreview saveMenuManager)
         {
             _menuButton = menuButtonService.MenuButton;
             _menuButtonText = menuButtonService.MenuButtonText;
@@ -31,16 +29,14 @@ namespace SaveLoadCore.UIView
 
         private void ShowCloseMenu()
         {
-            if (!isToogle)
+            if (!_saveLoadMenu.gameObject.activeSelf)
             {
-                isToogle = true;
                 _saveLoadMenu.gameObject.SetActive(true);
                 _menuInitializeManager.PreViewSave();
                 _menuButtonText.text = "Закрыть меню";
             }
             else
             {
-                isToogle = false;
                 _saveLoadMenu.gameObject.SetActive(false);
                 _menuButtonText.text = "Открыть меню";
             }

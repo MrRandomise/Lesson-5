@@ -7,7 +7,6 @@ namespace SaveLoadCore.UIView
     public sealed class ViewService
     {
         public SaveLoadComponents SaveLoadMenu;
-        public SaveLoadProcessing SaveLoadProcessing;
         public GameObject SaveLoadItemPrefab;
     }
 }

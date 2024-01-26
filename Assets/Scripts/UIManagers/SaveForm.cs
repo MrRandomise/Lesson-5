@@ -9,12 +9,14 @@ namespace SaveLoadCore.UIView
     {
         private ViewService _viewService;
         private SaveLoad _saveLoad;
+        private LoadPreview _menuInitializeManager;
 
         [Inject]
-        private void Construct(ViewService viewService, SaveLoad saveLoad)
+        private void Construct(ViewService viewService, SaveLoad saveLoad, LoadPreview saveLoadMenuInitialize)
         {
             _saveLoad = saveLoad;
             _viewService = viewService;
+            _menuInitializeManager = saveLoadMenuInitialize;
             _viewService.SaveLoadMenu.SaveFormSaveBtn.onClick.AddListener(ClickSaveButton);
             _viewService.SaveLoadMenu.SaveFormCancelBtn.onClick.AddListener(ClickCancelButton);
         }
@@ -28,7 +30,8 @@ namespace SaveLoadCore.UIView
             }
             else
             {
-                _saveLoad.SaveData(_viewService.SaveLoadMenu.SaveFormInputName.text);
+                _saveLoad.TrySaveFile(_viewService.SaveLoadMenu.SaveFormInputName.text);
+                _menuInitializeManager.PreViewSave();
                 _viewService.SaveLoadMenu.SaveFormInputName.text = string.Empty;
                 _viewService.SaveLoadMenu.SaveForm.SetActive(false);
             }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using Zenject;
+using UnityEngine.SceneManagement;
 
 namespace SaveLoadCore
 {
@@ -9,23 +10,21 @@ namespace SaveLoadCore
     {
         private ES3Settings _saveSetting;
         private const string _secretCryptKey = "1234";
-        private const string _info = "SaveInfo";
+        private const string _infoName = "infoName";
+        private const string _infoDate = "infoDate";
+        private const string _infoScreen = "infoScreen";
+        private const string _dataObject = "dataObjects";
         private Camera _camera;
         private ScreenCamera _screenCamer;
         private List<GameObject> _saveObjectList;
-        private LoadManager _loadManager;
-        
-        private List<GameObject> prefabInstances = new List<GameObject>();
+        public string _saveName = "autosave.sav";
 
         [Inject]
-        private void Construct(ScreenCamera screenCamer, SaveComponentsService saveComponentsService, LoadManager loadManager, buttonTest buttonTest)
+        private void Construct(ScreenCamera screenCamer, SaveComponentsService saveComponentsService)
         {
             _screenCamer = screenCamer;
             _camera = saveComponentsService.ScreenCamera;
             _saveObjectList = saveComponentsService.SaveObjectList;
-            _loadManager = loadManager;
-            buttonTest.SaveButton.onClick.AddListener(SaveTest);
-            buttonTest.LoadButton.onClick.AddListener(LoadTest);
         }
 
         public void Initialize()
@@ -33,12 +32,18 @@ namespace SaveLoadCore
             _saveSetting = new ES3Settings(ES3.EncryptionType.AES, _secretCryptKey);
         }
 
-        public bool SaveFile(SaveDataStruct saveData)
+        public bool TrySaveFile(string name)
         {
-            var filename = $"{Application.dataPath}/Saves/{saveData.SaveName}.sav";
             try
             {
-                ES3.Save(_info, saveData, filename, _saveSetting);
+                var filename = $"{Application.dataPath}/Saves/{name}.sav";
+                var SaveScreen = _screenCamer.TrySaveCameraView(_camera);
+
+                ES3.Save(_infoName, name, filename, _saveSetting);
+                ES3.Save(_infoDate, DateTime.Now, filename, _saveSetting);
+                ES3.Save(_infoScreen, SaveScreen, filename, _saveSetting);
+                ES3.Save(_dataObject, _saveObjectList, filename, _saveSetting);
+
                 return true;
             }
             catch (System.IO.IOException)
@@ -53,64 +58,50 @@ namespace SaveLoadCore
             }
         }
 
-        public bool LoadFile(string filename, out SaveDataStruct loadData)
+        public bool TryLoadInfo(string filename, out SaveDataStruct data)
         {
             try
             {
-                loadData = ES3.Load(_info, filename, new SaveDataStruct(), _saveSetting);
+                var obj = new SaveDataStruct();
+                obj.SaveDate = ES3.Load<DateTime>(_infoDate, filename, _saveSetting);
+                obj.SaveName = ES3.Load<string>(_infoName, filename, _saveSetting);
+                obj.SaveScreen = ES3.Load<Byte[]>(_infoScreen, filename, _saveSetting);
+
+                data = obj;
                 return true;
             }
             catch (System.IO.IOException)
             {
                 Debug.LogWarningFormat("The file is open elsewhere or there was not enough storage space");
-                loadData = new SaveDataStruct();
+                data = new SaveDataStruct();
                 return false;
             }
             catch (System.Security.SecurityException)
             {
                 Debug.LogWarningFormat("You do not have the required permissions");
-                loadData = new SaveDataStruct();
+                data = new SaveDataStruct();
                 return false;
             }
         }
 
-        public void SaveData(string name)
+        public bool TryLoadGameObject(string filename)
         {
-            var data = new SaveDataStruct();
-
-            data.SaveName = name;
-            data.SaveDate = DateTime.Now;
-            data.SaveScreen = _screenCamer.TrySaveCameraView(_camera);
-            data.SaveObjects = new List<GameObject>();
-
-            foreach(GameObject list in _saveObjectList)
+            try
             {
-                data.SaveObjects.Add(list);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                var list = ES3.Load(_dataObject, filename, new List<GameObject>(), _saveSetting);
+                return true;
             }
-            SaveFile(data);
-        }
-
-        public void LoadData(string name)
-        {
-            LoadFile(name, out var data);
-        }
-
-
-        public void SaveTest()
-        {
-            var filename = $"{Application.dataPath}/Saves/123.sav";
-            foreach (GameObject list in _saveObjectList)
+            catch (System.IO.IOException)
             {
-                prefabInstances.Add(list);
+                Debug.LogWarningFormat("The file is open elsewhere or there was not enough storage space");
+                return false;
             }
-            
-            ES3.Save("prefabInstances", prefabInstances, filename, _saveSetting);
-        }
-
-        public void LoadTest()
-        {
-            var filename = $"{Application.dataPath}/Saves/123.sav";
-            prefabInstances = ES3.Load("prefabInstances", filename, new List<GameObject>(), _saveSetting);
+            catch (System.Security.SecurityException)
+            {
+                Debug.LogWarningFormat("You do not have the required permissions");
+                return false;
+            }
         }
     }
 }

@@ -1,10 +1,9 @@
 
 public interface ISaveLoad
 {
-    bool SaveFile(SaveDataStruct saveData);
+    bool TrySaveFile(string name);
 
-    bool LoadFile(string filename, out SaveDataStruct saveData);
+    bool TryLoadInfo(string filename, out SaveDataStruct data);
 
-    void SaveData(string name);
-    void LoadData(string name);
+    bool TryLoadGameObject(string filename);
 }

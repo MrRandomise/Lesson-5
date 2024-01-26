@@ -1,4 +1,5 @@
 using System;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace SaveLoadCore.UIView
@@ -21,7 +22,7 @@ namespace SaveLoadCore.UIView
         private void ClickLoadButton()
         {
             var name = _selectedItems.getSelectedItems().HideField.text;
-            _load.LoadData(name);
+            _load.TryLoadGameObject(name);
             _viewService.SaveLoadMenu.gameObject.SetActive(false);
         }
 

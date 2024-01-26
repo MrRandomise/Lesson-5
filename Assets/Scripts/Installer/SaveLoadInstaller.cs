@@ -13,9 +13,7 @@ namespace SaveLoadCore
 
             Container.Bind<ScreenCamera>().AsSingle();
 
-            Container.Bind<LoadManager>().AsSingle();
-
-            Container.BindInterfacesAndSelfTo<SaveLoadFactory>().AsSingle();
+            Container.Bind<SaveLoadFactory>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<SaveLoad>().AsSingle().NonLazy();
         }
