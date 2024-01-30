@@ -4,6 +4,6 @@ namespace SaveLoadCore
 {
     public interface ISaveLoadFactory
     {
-        public GameObject Creator(GameObject prefab, Transform transform);
+        public GameObject Creat(GameObject prefab, Transform transform);
     }
 }

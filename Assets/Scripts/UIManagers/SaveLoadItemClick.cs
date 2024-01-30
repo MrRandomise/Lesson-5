@@ -9,12 +9,12 @@ namespace SaveLoadCore.UIView
         [SerializeField]
         private SaveLoadContent _field;
         private static GameObject _selectedItem = null;
-        private ViewService _viewService;
+        private MainFomComponents _mainFromComponents;
 
         [Inject]
-        private void construct(ViewService viewService)
+        private void construct(MainFomComponents mainFomComponents)
         {
-            _viewService = viewService;
+            _mainFromComponents = mainFomComponents;
         }
 
         private void OnDisable()
@@ -23,13 +23,13 @@ namespace SaveLoadCore.UIView
             {
                 _selectedItem.SetActive(false);
             }
-            if (_viewService.SaveLoadMenu.ReSave.interactable)
+            if (_mainFromComponents.ReSave.interactable)
             {
-                _viewService.SaveLoadMenu.ReSave.interactable = false;
+                _mainFromComponents.ReSave.interactable = false;
             }
-            if (_viewService.SaveLoadMenu.LoadButton.interactable)
+            if (_mainFromComponents.LoadButton.interactable)
             {
-                _viewService.SaveLoadMenu.LoadButton.interactable = false;
+                _mainFromComponents.LoadButton.interactable = false;
             }
         }
 
@@ -43,13 +43,13 @@ namespace SaveLoadCore.UIView
             _selectedItem = _field.SelectedItem;
             _selectedItem.SetActive(true);
 
-            if(!_viewService.SaveLoadMenu.ReSave.interactable)
+            if(!_mainFromComponents.ReSave.interactable)
             {
-                _viewService.SaveLoadMenu.ReSave.interactable = true;
+                _mainFromComponents.ReSave.interactable = true;
             }
-            if (!_viewService.SaveLoadMenu.LoadButton.interactable)
+            if (!_mainFromComponents.LoadButton.interactable)
             {
-                _viewService.SaveLoadMenu.LoadButton.interactable = true;
+                _mainFromComponents.LoadButton.interactable = true;
             }
         }
     }

@@ -7,45 +7,47 @@ namespace SaveLoadCore.UIView
 {
     public sealed class SaveForm: IDisposable
     {
-        private ViewService _viewService;
-        private SaveLoad _saveLoad;
+        private ISaveLoad _saveLoad;
+        private SaveFormComponents _saveFormComponents;
         private LoadPreview _menuInitializeManager;
+        private MainFomComponents _mainFomComponents;
 
         [Inject]
-        private void Construct(ViewService viewService, SaveLoad saveLoad, LoadPreview saveLoadMenuInitialize)
+        private void Construct(MainFomComponents mainFomComponents, SaveFormComponents saveFormComponents, ISaveLoad saveLoad, LoadPreview saveLoadMenuInitialize)
         {
             _saveLoad = saveLoad;
-            _viewService = viewService;
+            _mainFomComponents = mainFomComponents;
+            _saveFormComponents = saveFormComponents;
             _menuInitializeManager = saveLoadMenuInitialize;
-            _viewService.SaveLoadMenu.SaveFormSaveBtn.onClick.AddListener(ClickSaveButton);
-            _viewService.SaveLoadMenu.SaveFormCancelBtn.onClick.AddListener(ClickCancelButton);
+            _saveFormComponents.SaveFormSaveBtn.onClick.AddListener(ClickSaveButton);
+            _saveFormComponents.SaveFormCancelBtn.onClick.AddListener(ClickCancelButton);
         }
 
         private void ClickSaveButton()
-        { 
-            if(File.Exists($"{Application.dataPath}/Saves/{_viewService.SaveLoadMenu.SaveFormInputName.text}.sav"))
+        {
+            if(File.Exists($"{Application.dataPath}/Saves/{_saveFormComponents.SaveFormInputName.text}.sav"))
             {
-                _viewService.SaveLoadMenu.AcceptForm.SetActive(true);
-                _viewService.SaveLoadMenu.SaveForm.SetActive(false);
+                _mainFomComponents.AcceptForm.SetActive(true);
+                _mainFomComponents.SaveForm.SetActive(false);
             }
             else
             {
-                _saveLoad.TrySaveFile(_viewService.SaveLoadMenu.SaveFormInputName.text);
+                _saveLoad.TrySaveFile(_saveFormComponents.SaveFormInputName.text);
                 _menuInitializeManager.PreViewSave();
-                _viewService.SaveLoadMenu.SaveFormInputName.text = string.Empty;
-                _viewService.SaveLoadMenu.SaveForm.SetActive(false);
+                _saveFormComponents.SaveFormInputName.text = string.Empty;
+                _mainFomComponents.SaveForm.SetActive(false);
             }
         }
 
         private void ClickCancelButton()
         {
-            _viewService.SaveLoadMenu.SaveForm.SetActive(false);
+            _mainFomComponents.SaveForm.SetActive(false);
         }
         
         public void Dispose()
         {
-            _viewService.SaveLoadMenu.SaveFormSaveBtn.onClick.RemoveListener(ClickSaveButton);
-            _viewService.SaveLoadMenu.SaveFormCancelBtn.onClick.RemoveListener(ClickCancelButton);
+            _saveFormComponents.SaveFormSaveBtn.onClick.RemoveListener(ClickSaveButton);
+            _saveFormComponents.SaveFormCancelBtn.onClick.RemoveListener(ClickCancelButton);
         }
     }
 }

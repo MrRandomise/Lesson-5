@@ -9,40 +9,33 @@ namespace SaveLoadCore
     public sealed class SaveLoad : ISaveLoad, IInitializable
     {
         private ES3Settings _saveSetting;
+        private SaveLoadMediators _saveLoadMediators;
         private const string _secretCryptKey = "1234";
         private const string _infoName = "infoName";
         private const string _infoDate = "infoDate";
         private const string _infoScreen = "infoScreen";
         private const string _dataObject = "dataObjects";
-        private Camera _camera;
-        private ScreenCamera _screenCamer;
-        private List<GameObject> _saveObjectList;
-        public string _saveName = "autosave.sav";
 
         [Inject]
-        private void Construct(ScreenCamera screenCamer, SaveComponentsService saveComponentsService)
+        public void Construct(SaveLoadMediators saveLoadMediators)
         {
-            _screenCamer = screenCamer;
-            _camera = saveComponentsService.ScreenCamera;
-            _saveObjectList = saveComponentsService.SaveObjectList;
+            _saveLoadMediators = saveLoadMediators;
         }
 
         public void Initialize()
         {
-            _saveSetting = new ES3Settings(ES3.EncryptionType.AES, _secretCryptKey);
+            _saveSetting = new ES3Settings(ES3.EncryptionType.AES, _secretCryptKey);            
         }
 
         public bool TrySaveFile(string name)
         {
             try
             {
-                var filename = $"{Application.dataPath}/Saves/{name}.sav";
-                var SaveScreen = _screenCamer.TrySaveCameraView(_camera);
-
-                ES3.Save(_infoName, name, filename, _saveSetting);
-                ES3.Save(_infoDate, DateTime.Now, filename, _saveSetting);
-                ES3.Save(_infoScreen, SaveScreen, filename, _saveSetting);
-                ES3.Save(_dataObject, _saveObjectList, filename, _saveSetting);
+                var data = _saveLoadMediators.GetLoadStruct(name);
+                ES3.Save(_infoName, name, data.FileName, _saveSetting);
+                ES3.Save(_infoDate, data.SaveDate, data.FileName, _saveSetting);
+                ES3.Save(_infoScreen, data.SaveScreen, data.FileName, _saveSetting);
+                ES3.Save(_dataObject, data.SaveObjects, data.FileName, _saveSetting);
 
                 return true;
             }
@@ -89,7 +82,7 @@ namespace SaveLoadCore
             try
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                var list = ES3.Load(_dataObject, filename, new List<GameObject>(), _saveSetting);
+                ES3.Load(_dataObject, filename, new List<GameObject>(), _saveSetting);
                 return true;
             }
             catch (System.IO.IOException)

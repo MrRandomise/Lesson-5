@@ -7,18 +7,18 @@ namespace SaveLoadCore.UIView
 {
     public sealed class LoadPreview
     {
+        private ISaveLoad _saveLoad;
+        private ISaveLoadFactory _saveLoadFactory;
         private GameObject _saveContainer;
-        private List<GameObject> _contetList = new List<GameObject>();
         private GameObject _saveLoadItem;
-        private SaveLoad _saveLoad;
+        private List<GameObject> _contetList = new List<GameObject>();
         private ScreenCamera _screenCamera;
-        private SaveLoadFactory _saveLoadFactory;
 
         [Inject]
-        private void Construct(ViewService viewService, SaveLoad saveLoad, ScreenCamera screenCamera, SaveLoadFactory saveLoadFactory)
+        private void Construct(MainFomComponents mainFomComponents, ISaveLoad saveLoad, ScreenCamera screenCamera, ISaveLoadFactory saveLoadFactory)
         {
-            _saveContainer = viewService.SaveLoadMenu.SaveLoadContainer;
-            _saveLoadItem = viewService.SaveLoadItemPrefab;
+            _saveContainer = mainFomComponents.SaveLoadContainer;
+            _saveLoadItem = mainFomComponents.SaveLoadItemPrefab;
             _saveLoad = saveLoad;
             _screenCamera = screenCamera;
             _saveLoadFactory = saveLoadFactory;
@@ -64,7 +64,7 @@ namespace SaveLoadCore.UIView
                 var newCount = files.Length - _contetList.Count;
                 for (int i = 0; i < newCount; i++)
                 {
-                    var item = _saveLoadFactory.Creator(_saveLoadItem, _saveContainer.transform);
+                    var item = _saveLoadFactory.Creat(_saveLoadItem, _saveContainer.transform);
                     _contetList.Add(item);
                 }
             }

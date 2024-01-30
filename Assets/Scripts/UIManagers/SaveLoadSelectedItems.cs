@@ -8,9 +8,9 @@ namespace SaveLoadCore.UIView
         private GameObject _saveContainer;
 
         [Inject]
-        private void Construct(ViewService viewService)
+        private void Construct(MainFomComponents mainFomComponents)
         {
-            _saveContainer = viewService.SaveLoadMenu.SaveLoadContainer;
+            _saveContainer = mainFomComponents.SaveLoadContainer;
         }
 
         public SaveLoadContent getSelectedItems()

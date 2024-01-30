@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8317805116646253974}
   - component: {fileID: 8317805116646253975}
-  - component: {fileID: -4160956959457834479}
-  - component: {fileID: -4077928373821179299}
+  - component: {fileID: -6835560392754424760}
+  - component: {fileID: -8247640332762171476}
   m_Layer: 0
   m_Name: Stone
   m_TagString: Untagged
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   amount: 0
---- !u!114 &-4160956959457834479
+--- !u!114 &-6835560392754424760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,27 +61,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baff8732cd3074ef88b34f9cc487846d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabId: 1293664504827741148
+  prefabId: 6264054743374818726
   localRefs:
     _Keys:
-    - {fileID: -4077928373821179299}
-    - {fileID: 8317805116646253975}
-    - {fileID: 5281203461640333460}
-    - {fileID: 5287069010646736326}
-    - {fileID: 2800000, guid: c38d556b22e1e8643b115fb8388f0884, type: 3}
-    - {fileID: 5272977048895913808}
-    - {fileID: 2100000, guid: 8a171cf0e2e91304bba5ee360bf75e15, type: 2}
-    - {fileID: 1869199794537658908}
+    - {fileID: -8247640332762171476}
     - {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+    - {fileID: 2100000, guid: 8a171cf0e2e91304bba5ee360bf75e15, type: 2}
+    - {fileID: 5287069010646736326}
+    - {fileID: 1869199794537658908}
     - {fileID: 11500000, guid: baff8732cd3074ef88b34f9cc487846d, type: 3}
     - {fileID: 4300000, guid: 603d8728d37b0fa428b3a23b153fb670, type: 3}
-    - {fileID: -4160956959457834479}
+    - {fileID: -6835560392754424760}
+    - {fileID: 5281203461640333460}
     - {fileID: 11500000, guid: a92cc34cfc3244b2b8878d8fec2e705a, type: 3}
     - {fileID: 11500000, guid: 7e2cacabe81aea8468e08e911727ee97, type: 3}
-    - {fileID: 8317805116646253974}
     - {fileID: 5262625865185717444}
-    _Values: 1fdc1db553741522a75537d5559ca471e86a29565dcab5603e504b1567d4aa60dd7cffb9cdefe904e094d2cb34ee197f92d28dc4c388766e6a81e50abe3fb423602852d7466f2b377412cd253590d24e8aabf683de120734aab6c7fad76146429adecd8468ab1f30f47c997752797132a8001ad717b0de3c98b857c59e90db1f
---- !u!114 &-4077928373821179299
+    - {fileID: 5272977048895913808}
+    - {fileID: 2800000, guid: c38d556b22e1e8643b115fb8388f0884, type: 3}
+    - {fileID: 8317805116646253974}
+    - {fileID: 8317805116646253975}
+    _Values: f76b490d0f861a7a2aacc3d5535b1c5d912995360c835b398646ea3f23f0a2420ddf7346c984b17a2aea11296a404338669421f81051737fe39d259770547f660b81442ac5e5515ed9ede73a4d6a6f17a5f904cd72739e62e3f4a5382440743bd9a2c2f24d57745eda18bb2dc0f511419ef30d217231ce18a6e3af3a51fbdf28
+--- !u!114 &-8247640332762171476
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

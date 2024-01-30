@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
@@ -9,15 +10,15 @@ namespace SaveLoadCore.UIView
     {
         private Button _menuButton;
         private TMP_Text _menuButtonText;
-        private SaveLoadComponents _saveLoadMenu;
+        private GameObject _saveLoadMenu;
         private LoadPreview _menuInitializeManager;
 
         [Inject]
-        private void Construct(MenuButtonService menuButtonService, ViewService saveLoadMenu, LoadPreview saveMenuManager)
+        private void Construct(MenuButtonComponents menuButtonService, MainFomComponents mainFomComponents, LoadPreview saveMenuManager)
         {
             _menuButton = menuButtonService.MenuButton;
             _menuButtonText = menuButtonService.MenuButtonText;
-            _saveLoadMenu = saveLoadMenu.SaveLoadMenu;
+            _saveLoadMenu = mainFomComponents.SaveLoadMenu;
             _menuInitializeManager = saveMenuManager;
             ClickButton();
         }

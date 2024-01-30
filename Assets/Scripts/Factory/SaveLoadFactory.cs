@@ -12,7 +12,7 @@ namespace SaveLoadCore
             diContainer = container;
         }
 
-        public GameObject Creator(GameObject prefab, Transform transform)
+        public GameObject Creat(GameObject prefab, Transform transform)
         {
             var obj = diContainer.InstantiatePrefab(prefab, transform);
             return obj;

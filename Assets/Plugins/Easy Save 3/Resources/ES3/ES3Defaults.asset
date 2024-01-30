@@ -34,7 +34,6 @@ MonoBehaviour:
     - Assembly-CSharp-firstpass
     - GameEngine
     - Purchasing.Common
-    - SaveSystem
     - Sirenix.OdinInspector.CompatibilityLayer
     - Zenject
     - Zenject-IntegrationTests
