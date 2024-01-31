@@ -7,24 +7,47 @@ namespace SaveLoadCore
     [Serializable]
     public class SaveLoadMediators
     {
-        public Camera _camera;
-
         public List<GameObject> _saveObjectList;
         private ScreenCamera _screenCamer = new ScreenCamera();
 
         public SaveDataStruct GetLoadStruct(string name)
         {
             var data = new SaveDataStruct();
-            _saveObjectList.Add(GameObject.Find("<Resources>"));
-            _saveObjectList.Add(GameObject.Find("<Units>"));
-
             data.FileName = $"{Application.dataPath}/Saves/{name}.sav";
-            data.SaveScreen = _screenCamer.TrySaveCameraView(_camera);
+            data.SaveScreen = _screenCamer.TrySaveCameraView();
             data.SaveName = name;
             data.SaveDate = DateTime.Now;
-            data.SaveObjects = _saveObjectList;
+            data.SaveObjects = GetSaveObjects();
 
             return data;
+        }
+
+        private List<GameObject> GetSaveObjects()
+        {
+            var list = new List<GameObject>();
+            for(int i = 0; i < _saveObjectList.Count; i++)
+            {
+                for(int j = 0; j < _saveObjectList[i].transform.childCount; j++)
+                {
+                    _saveObjectList[i].transform.GetChild(j).GetComponent<TargetSave>().Saved = true;
+                    list.Add(_saveObjectList[i].transform.GetChild(j).gameObject);
+                }
+            }
+            return list;
+        }
+
+        public void ClearScene()
+        {
+            for (int i = 0; i < _saveObjectList.Count; i++)
+            {
+                for (int j = 0; j < _saveObjectList[i].transform.childCount; j++)
+                {
+                    if (!_saveObjectList[i].transform.GetChild(j).GetComponent<TargetSave>().Saved)
+                    {
+                        MonoBehaviour.Destroy(_saveObjectList[i].transform.GetChild(j).gameObject);
+                    }
+                }
+            }
         }
     }
 }

@@ -15,13 +15,13 @@ namespace SaveLoadCore.UIView
 
         public GameObject SaveLoadContainer;
 
+        public GameObject SaveLoadItemPrefab;
+
         public Button SaveButton;
 
         public Button ReSave;
 
         public Button LoadButton;
-
-        public GameObject SaveLoadItemPrefab;
     }
 }
 

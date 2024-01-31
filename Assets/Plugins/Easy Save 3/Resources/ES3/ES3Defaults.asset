@@ -34,7 +34,6 @@ MonoBehaviour:
     - Assembly-CSharp-firstpass
     - GameEngine
     - Purchasing.Common
-    - Sirenix.OdinInspector.CompatibilityLayer
     - Zenject
     - Zenject-IntegrationTests
     - Zenject-IntegrationTests-Editor
@@ -49,5 +48,5 @@ MonoBehaviour:
   updateReferencesWhenSceneIsOpened: 1
   referenceFolders: []
   logDebugInfo: 0
-  logWarnings: 1
+  logWarnings: 0
   logErrors: 1

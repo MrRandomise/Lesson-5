@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using Zenject;
-using UnityEngine.SceneManagement;
 
 namespace SaveLoadCore
 {
@@ -22,6 +21,7 @@ namespace SaveLoadCore
             _saveLoadMediators = saveLoadMediators;
         }
 
+        //если переместить _saveSetting в Construct то все ломается, поэтому пусть это будет тут )
         public void Initialize()
         {
             _saveSetting = new ES3Settings(ES3.EncryptionType.AES, _secretCryptKey);            
@@ -81,8 +81,8 @@ namespace SaveLoadCore
         {
             try
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 ES3.Load(_dataObject, filename, new List<GameObject>(), _saveSetting);
+                _saveLoadMediators.ClearScene();
                 return true;
             }
             catch (System.IO.IOException)

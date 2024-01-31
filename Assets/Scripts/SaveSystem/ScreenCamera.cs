@@ -4,8 +4,9 @@ namespace SaveLoadCore
 {
     public sealed class ScreenCamera
     {
-        public byte[] TrySaveCameraView(Camera cam)
+        public byte[] TrySaveCameraView()
         {
+            var cam = Camera.main;
             RenderTexture screenTexture = new RenderTexture(Screen.width, Screen.height, 16);
             cam.targetTexture = screenTexture;
             RenderTexture.active = screenTexture;
