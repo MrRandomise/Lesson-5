@@ -7,13 +7,13 @@ namespace SaveLoadCore.UIView
 {
     public sealed class SaveForm: IDisposable
     {
-        private ISaveLoad _saveLoad;
+        private SaveLoadInfo _saveLoad;
         private SaveFormComponents _saveFormComponents;
         private LoadPreview _menuInitializeManager;
         private MainFomComponents _mainFomComponents;
 
         [Inject]
-        private void Construct(MainFomComponents mainFomComponents, SaveFormComponents saveFormComponents, ISaveLoad saveLoad, LoadPreview saveLoadMenuInitialize)
+        private void Construct(MainFomComponents mainFomComponents, SaveFormComponents saveFormComponents, SaveLoadInfo saveLoad, LoadPreview saveLoadMenuInitialize)
         {
             _saveLoad = saveLoad;
             _mainFomComponents = mainFomComponents;
@@ -32,7 +32,7 @@ namespace SaveLoadCore.UIView
             }
             else
             {
-                _saveLoad.TrySaveFile(_saveFormComponents.SaveFormInputName.text);
+                _saveLoad.SaveInfo(_saveFormComponents.SaveFormInputName.text);
                 _menuInitializeManager.PreViewSave();
                 _saveFormComponents.SaveFormInputName.text = string.Empty;
                 _mainFomComponents.SaveForm.SetActive(false);

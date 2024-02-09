@@ -5,7 +5,7 @@ namespace SaveLoadCore.UIView
 {
     public sealed class SaveAcceptForm: IDisposable
     {
-        private ISaveLoad _saveLoad;
+        private SaveLoadInfo _saveLoad;
         private SaveFormComponents _saveFormComponents;
         private AcceptFormComponents _acceptFormComponents;
         private MainFomComponents _mainFomComponents;
@@ -13,7 +13,7 @@ namespace SaveLoadCore.UIView
         private LoadPreview _menuInitializeManager;
 
         [Inject]
-        private void Construct(ISaveLoad saveLoad, MainFomComponents mainFomComponents, AcceptFormComponents acceptFormComponents, SaveFormComponents saveFormComponents, SaveLoadSelectedItems saveLoadSelectedItems, LoadPreview saveLoadMenuInitializeManager)
+        private void Construct(SaveLoadInfo saveLoad, MainFomComponents mainFomComponents, AcceptFormComponents acceptFormComponents, SaveFormComponents saveFormComponents, SaveLoadSelectedItems saveLoadSelectedItems, LoadPreview saveLoadMenuInitializeManager)
         {
             _saveLoad = saveLoad;
             _saveFormComponents = saveFormComponents;
@@ -37,7 +37,7 @@ namespace SaveLoadCore.UIView
                 name = _saveFormComponents.SaveFormInputName.text;
                 _saveFormComponents.SaveFormInputName.text = string.Empty;
             }
-            _saveLoad.TrySaveFile(name);
+            _saveLoad.SaveInfo(name);
             _menuInitializeManager.PreViewSave();
             _mainFomComponents.AcceptForm.SetActive(false);
         }

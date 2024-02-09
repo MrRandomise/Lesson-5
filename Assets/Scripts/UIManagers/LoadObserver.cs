@@ -22,7 +22,7 @@ namespace SaveLoadCore.UIView
         private void ClickLoadButton()
         {
             var name = _selectedItems.getSelectedItems().HideField.text;
-            _load.TryLoadGameObject(name);
+            //_load.TryLoadGameObject(name);
             _mainFomComponents.SaveLoadMenu.SetActive(false);
         }
 

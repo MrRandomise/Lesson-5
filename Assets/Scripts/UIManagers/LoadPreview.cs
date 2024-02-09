@@ -7,7 +7,7 @@ namespace SaveLoadCore.UIView
 {
     public sealed class LoadPreview
     {
-        private ISaveLoad _saveLoad;
+        private SaveLoadInfo _saveLoad;
         private ISaveLoadFactory _saveLoadFactory;
         private GameObject _saveContainer;
         private GameObject _saveLoadItem;
@@ -15,7 +15,7 @@ namespace SaveLoadCore.UIView
         private ScreenCamera _screenCamera;
 
         [Inject]
-        private void Construct(MainFomComponents mainFomComponents, ISaveLoad saveLoad, ScreenCamera screenCamera, ISaveLoadFactory saveLoadFactory)
+        private void Construct(MainFomComponents mainFomComponents, SaveLoadInfo saveLoad, ScreenCamera screenCamera, ISaveLoadFactory saveLoadFactory)
         {
             _saveContainer = mainFomComponents.SaveLoadContainer;
             _saveLoadItem = mainFomComponents.SaveLoadItemPrefab;
@@ -45,7 +45,7 @@ namespace SaveLoadCore.UIView
             {
                 _contetList[i].gameObject.SetActive(true);
                 var item = _contetList[i].GetComponent<SaveLoadContent>();
-                _saveLoad.TryLoadInfo(Files[i], out var data);
+                var data = _saveLoad.LoadInfo(Files[i]);
                 if(data.SaveName != item.SaveName.text || data.SaveDate.ToString() != item.SaveDate.text) 
                 {
                     _screenCamera.TryLoadCameraView(data.SaveScreen, out var screen);
