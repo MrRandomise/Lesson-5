@@ -93,8 +93,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5446929593781395038}
   - component: {fileID: 2552805259716626581}
-  - component: {fileID: 662315524390376220}
-  - component: {fileID: 5491987680800351888}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -132,32 +130,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Tree1
   amount: 5
---- !u!114 &662315524390376220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2380466292678263252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd56de255a18c6b4e9d846f051d26c45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Saved: 0
---- !u!114 &5491987680800351888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2380466292678263252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e2cacabe81aea8468e08e911727ee97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  components:
-  - {fileID: 5446929593781395038}
-  - {fileID: 2552805259716626581}
-  - {fileID: 662315524390376220}

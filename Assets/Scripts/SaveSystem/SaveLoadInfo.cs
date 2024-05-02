@@ -7,34 +7,34 @@ namespace SaveLoadCore
 {
     public sealed class SaveLoadInfo
     {
-        private ISaveLoad _saveLoad;
-        private ScreenCamera _screenCamer = new ScreenCamera();
-        private const string _info = "info";
+        //private ISaveLoad _saveLoad;
+        //private ScreenCamera _screenCamer = new ScreenCamera();
+        //private const string _info = "info";
 
-        [Inject]
-        private void construct(ISaveLoad saveLoad)
-        {
-            _saveLoad = saveLoad;
-        }
+        //[Inject]
+        //private void construct(ISaveLoad saveLoad)
+        //{
+        //    _saveLoad = saveLoad;
+        //}
 
-        public void SaveInfo(string name)
-        {
-            var data = new SaveInfoStruct();
-            var fileName = $"{Application.dataPath}/Saves/{name}.sav";
-            data.SaveScreen = _screenCamer.TrySaveCameraView();
-            data.SaveName = name;
-            data.SaveDate = DateTime.Now;
+        //public void SaveInfo(string name)
+        //{
+        //    var data = new SaveInfoStruct();
+        //    var fileName = $"{Application.dataPath}/Saves/{name}.sav";
+        //    data.SaveScreen = _screenCamer.TrySaveCameraView();
+        //    data.SaveName = name;
+        //    data.SaveDate = DateTime.Now;
 
-            _saveLoad.TrySaveFile(_info, data, fileName);
-        }
+        //    _saveLoad.TrySaveFile(_info, data, fileName);
+        //}
 
-        public SaveInfoStruct LoadInfo(string filename)
-        {
-            var data = new SaveInfoStruct();
+        //public SaveInfoStruct LoadInfo(string filename)
+        //{
+        //    var data = new SaveInfoStruct();
 
-            _saveLoad.TryLoadInfo(_info, filename, out data);
+        //    _saveLoad.TryLoadInfo(_info, filename, out data);
 
-            return data;
-        }
+        //    return data;
+        //}
     }
 }

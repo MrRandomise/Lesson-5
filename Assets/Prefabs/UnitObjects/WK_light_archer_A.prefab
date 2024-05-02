@@ -2089,8 +2089,6 @@ GameObject:
   m_Component:
   - component: {fileID: 461784}
   - component: {fileID: -7196697707103354558}
-  - component: {fileID: -8266480456933037227}
-  - component: {fileID: -4772964860376624290}
   m_Layer: 0
   m_Name: WK_light_archer_A
   m_TagString: Untagged
@@ -2151,32 +2149,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: WK_light_archer_A
   hitPoints: 10
---- !u!114 &-8266480456933037227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 147264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd56de255a18c6b4e9d846f051d26c45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Saved: 0
---- !u!114 &-4772964860376624290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 147264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e2cacabe81aea8468e08e911727ee97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  components: []
 --- !u!1 &147358
 GameObject:
   m_ObjectHideFlags: 0

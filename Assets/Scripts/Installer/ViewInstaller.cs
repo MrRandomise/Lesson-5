@@ -6,8 +6,6 @@ namespace SaveLoadCore.UIView
 {
     public class ViewInstaller : MonoInstaller
     {
-        [SerializeField] private List<GameObject> _saveObjects;
-
         [SerializeField] private MenuButtonComponents _menuButtonService;
 
         [SerializeField] private AcceptFormComponents _acceptFormComponents;

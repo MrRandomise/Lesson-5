@@ -1491,8 +1491,6 @@ GameObject:
   m_Component:
   - component: {fileID: 426740}
   - component: {fileID: -6822647825084766476}
-  - component: {fileID: 5948626413150838866}
-  - component: {fileID: 589335363561611101}
   m_Layer: 0
   m_Name: Orc_shaman
   m_TagString: Untagged
@@ -1553,32 +1551,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: Orc_shaman
   hitPoints: 10
---- !u!114 &5948626413150838866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 135070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd56de255a18c6b4e9d846f051d26c45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Saved: 0
---- !u!114 &589335363561611101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 135070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e2cacabe81aea8468e08e911727ee97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  components: []
 --- !u!1 &135436
 GameObject:
   m_ObjectHideFlags: 0

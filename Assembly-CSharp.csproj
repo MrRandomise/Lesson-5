@@ -83,7 +83,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\SaveLoad.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
@@ -92,7 +91,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\Scripts\UIManagers\ReSaveObserver.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\SaveLoadUnitAndRes.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\Scripts\Factory\ISaveLoadFactory.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
@@ -103,12 +101,9 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Scripts\Factory\SaveLoadFactory.cs" />
     <Compile Include="Assets\Scripts\Components\AcceptFormComponents.cs" />
-    <Compile Include="Assets\Scripts\Service\SaveLoadService.cs" />
-    <Compile Include="Assets\Scripts\Service\ISaveLoadService.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\TargetSave.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\Scripts\Components\MenuButtonComponents.cs" />
@@ -119,7 +114,19 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\ISaveLoad.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Core\ISaveState.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Data\UnitsPrefabStorage.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Data\ResourceSavingManager.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Core\ISaveLoade.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\FileSaverSystem\Reader.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Core\SceneSaveManager.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Tools\SavingSystemHelper.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\FileSaverSystem\FileSystemSaverLoader.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Data\UnitSavingManager.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\FileSaverSystem\AesEncryptionProvider.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\FileSaverSystem\Saver.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Core\SaveSystem.cs" />
+    <Compile Include="Assets\Scripts\Installer\SceneLoader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -1146,10 +1153,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{462A8F96-BB0D-80E7-D7BA-C2402EC2031D}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
     <ProjectReference Include="GameEngine.csproj">
       <Project>{26570629-3C06-6ED3-091F-6196398029E3}</Project>
       <Name>GameEngine</Name>
