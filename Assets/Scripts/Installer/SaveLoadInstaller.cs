@@ -1,5 +1,6 @@
 using Core;
 using GameEngine;
+using SaveLoadCore;
 using SaveSystem.Core;
 using SaveSystem.Data;
 using SaveSystem.FileSaverSystem;
@@ -26,10 +27,12 @@ namespace SaveSystem.intaller
             Container.Bind<SavingSystemHelper>().FromInstance(helper).AsSingle();
             Container.Bind<SceneSaveManager>().AsSingle();
             Container.Bind<SceneStorage>().AsSingle();
+            Container.Bind<ScreenCamera>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<FileSystemSaverLoader>().AsSingle();
-            Container.BindInterfacesTo<UnitSavingManager>().AsSingle();
+            Container.BindInterfacesTo<UnitSavingStorage>().AsSingle();
             Container.BindInterfacesTo<ResourceSavingManager>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SaveLoadFactory>().AsSingle();
         }
     }
 }

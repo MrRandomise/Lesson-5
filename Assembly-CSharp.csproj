@@ -62,14 +62,12 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\Scripts\SaveSystem\SaveLoadInfo.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\Structure\SaveDataStruct.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\Scripts\Components\SaveFormComponents.cs" />
     <Compile Include="Assets\Scripts\UIManagers\LoadObserver.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\Structure\SaveInfoStruct.cs" />
     <Compile Include="Assets\Scripts\UIManagers\SaveAcceptForm.cs" />
     <Compile Include="Assets\Scripts\UIManagers\SaveFormObserver.cs" />
     <Compile Include="Assets\Scripts\UIManagers\LoadPreview.cs" />
@@ -78,7 +76,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Scripts\Installer\ViewInstaller.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\ScreenCamera.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Core\ScreenCamera.cs" />
     <Compile Include="Assets\Scripts\Installer\SaveLoadInstaller.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
@@ -122,11 +120,12 @@
     <Compile Include="Assets\Scripts\SaveSystem\Core\SceneSaveManager.cs" />
     <Compile Include="Assets\Scripts\SaveSystem\Tools\SavingSystemHelper.cs" />
     <Compile Include="Assets\Scripts\SaveSystem\FileSaverSystem\FileSystemSaverLoader.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\Data\UnitSavingManager.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Data\UnitSavingStorage.cs" />
     <Compile Include="Assets\Scripts\SaveSystem\FileSaverSystem\AesEncryptionProvider.cs" />
     <Compile Include="Assets\Scripts\SaveSystem\FileSaverSystem\Saver.cs" />
     <Compile Include="Assets\Scripts\SaveSystem\Core\SavingSystem.cs" />
     <Compile Include="Assets\Scripts\SaveSystem\Data\SceneStorage.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Data\SaveFileStorage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

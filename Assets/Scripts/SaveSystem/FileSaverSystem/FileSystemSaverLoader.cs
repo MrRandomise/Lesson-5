@@ -25,7 +25,6 @@ namespace SaveSystem.FileSaverSystem
                 var str = JsonConvert.SerializeObject(obj);
                 strList.Add(_encryptionProvider.AesEncryption(str));
             }
-            Debug.Log(strList.Count);
             _saver.Save(strList.ToArray(), filename);
         }
 
