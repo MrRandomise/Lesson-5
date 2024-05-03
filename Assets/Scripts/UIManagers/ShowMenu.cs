@@ -29,7 +29,7 @@ namespace SaveLoadCore.UIView
             _menuButton.onClick.AddListener(ShowCloseMenu);
         }
 
-        private void ShowCloseMenu()
+        public void ShowCloseMenu()
         {
             if (!_saveLoadMenu.gameObject.activeSelf)
             {

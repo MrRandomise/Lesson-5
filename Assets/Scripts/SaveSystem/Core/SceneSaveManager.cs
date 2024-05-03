@@ -1,13 +1,15 @@
 using System.Collections.Generic;
+using Zenject;
 
 namespace SaveSystem.Core
 {  
     public class SceneSaveManager
     {
-        private readonly List<ISaveState> _saveStates;
-        private readonly SavingSystem _savingSystem;
+        private List<ISaveState> _saveStates;
+        private SavingSystem _savingSystem;
 
-        public SceneSaveManager(SavingSystem system, List<ISaveState> saveStatesList)
+        [Inject]
+        private void Construct(SavingSystem system, List<ISaveState> saveStatesList)
         {
             _savingSystem = system;
             _saveStates = saveStatesList;

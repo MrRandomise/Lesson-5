@@ -1,7 +1,8 @@
-using UnityEngine;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using SaveSystem.Core;
+using SaveSystem.Data;
+using SaveLoadCore.Tools;
 
 namespace SaveSystem.FileSaverSystem
 {
@@ -10,40 +11,42 @@ namespace SaveSystem.FileSaverSystem
         private readonly AesEncryptionProvider _encryptionProvider = new();
         private readonly Saver _saver;
         private readonly Reader _reader;
-        public FileSystemSaverLoader()
+        private readonly SaveLoadInfoManager _saveFileManager;
+        private readonly FileNameManager _fileNameManager;
+
+        public FileSystemSaverLoader(SaveLoadInfoManager saveFileManager, FileNameManager fileNameManager)
         {
             _reader = new Reader();
             _saver = new Saver();
+            _saveFileManager = saveFileManager;
+            _fileNameManager = fileNameManager;
         }
 
-        public void Save(List<Dictionary<string, string>> data, string filename)
+        public void Save(List<Dictionary<string, string>> data, string name)
         {
-            filename = $"{Application.dataPath}/Saves/{filename}.sav";
-            var strList = new List<string>();
-            foreach (var obj in data)
-            {
-                var str = JsonConvert.SerializeObject(obj);
-                strList.Add(_encryptionProvider.AesEncryption(str));
-            }
-            _saver.Save(strList.ToArray(), filename);
+            var dataStruct = _saveFileManager.CaptureState(data, name);
+            name = _fileNameManager.GetSaveFile(name);
+            var str = Crypto(dataStruct);
+            _saver.Save(str, name);
         }
 
-        public List<Dictionary<string, string>> Load(string filename)
+        public SaveDataStruct Load(string filename)
         {
-            filename = $"{Application.dataPath}/Saves/{filename}.sav";
-            var result = new List<Dictionary<string, string>>();
-            if (!_reader.IsSaveFileExist(filename))
-            {
-                return result;
-            }
-
+            filename = _fileNameManager.GetSaveFile(filename);
+            var loadStruct = new SaveDataStruct();
             var loadedData = _reader.Load(filename);
             foreach (var data in loadedData)
             {
-                var obj = JsonConvert.DeserializeObject<Dictionary<string, string>>(_encryptionProvider.AesDecryption(data));
-                if(obj != null) result.Add(obj);
+                loadStruct = JsonConvert.DeserializeObject<SaveDataStruct>(_encryptionProvider.AesDecryption(data));
             }
-            return result;
+            return loadStruct;
         }
+
+        public string Crypto(SaveDataStruct data)
+        {
+            var str = JsonConvert.SerializeObject(data);
+            return _encryptionProvider.AesEncryption(str);
+        }
+
     }
 }

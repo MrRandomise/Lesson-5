@@ -1,6 +1,6 @@
+using SaveSystem.Data;
 using UnityEngine;
 using Zenject;
-using System.Collections.Generic;
 
 namespace SaveLoadCore.UIView
 {
@@ -17,14 +17,15 @@ namespace SaveLoadCore.UIView
             Container.Bind<AcceptFormComponents>().FromInstance(_acceptFormComponents).AsSingle();
             Container.Bind<MainFomComponents>().FromInstance(_mainFomComponents).AsSingle();
             Container.Bind<SaveFormComponents>().FromInstance(_saveFormComponents).AsSingle();
+
+            Container.Bind<LoadPreview>().AsSingle().NonLazy();
             Container.Bind<ShowMenu>().AsSingle().NonLazy();
-            Container.Bind <SaveForm>().AsSingle().NonLazy();
+            Container.Bind<SaveForm>().AsSingle().NonLazy();
             Container.Bind<SaveFormObserver>().AsSingle().NonLazy();
-            Container.Bind <SaveAcceptForm>().AsSingle().NonLazy();
+            Container.Bind<SaveAcceptForm>().AsSingle().NonLazy();
             Container.Bind<LoadObserver>().AsSingle().NonLazy();
             Container.Bind<ReSaveObserver>().AsSingle().NonLazy();
             Container.Bind<SaveLoadSelectedItems>().AsSingle().NonLazy();
-            Container.Bind<LoadPreview>().AsSingle().NonLazy();
         }
     }
 }

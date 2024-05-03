@@ -1,14 +1,12 @@
 using System;
-using Zenject;
 
 namespace SaveLoadCore.UIView
 {
     public sealed class ReSaveObserver: IDisposable
     {
-        private MainFomComponents _mainFomComponents;
+        private readonly MainFomComponents _mainFomComponents;
 
-        [Inject]
-        private void Construct(MainFomComponents mainFomComponents)
+        private ReSaveObserver(MainFomComponents mainFomComponents)
         {
             _mainFomComponents = mainFomComponents;
             _mainFomComponents.ReSave.onClick.AddListener(ClickReSaveButton);

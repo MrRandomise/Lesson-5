@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.SceneManagement;
 using UnityEngine;
-using Core;
 
 namespace SaveSystem.Core
 {
@@ -11,8 +9,8 @@ namespace SaveSystem.Core
     {
         private readonly ISaveLoade _saveLoader;
         private readonly List<Dictionary<string, string>> otherSceneEntries = new();
-        private readonly SceneStorage _sceneStorage;
-        public SavingSystem(ISaveLoade sl, SceneStorage sceneStorage)
+        private readonly SceneObjectsManager _sceneStorage;
+        public SavingSystem(ISaveLoade sl, SceneObjectsManager sceneStorage)
         {
             _saveLoader = sl;
             _sceneStorage = sceneStorage;
@@ -21,13 +19,13 @@ namespace SaveSystem.Core
         public bool RestoreState(List<ISaveState> saveStates, string name)
         {
             var loadedData = _saveLoader.Load(name);
-            if (!loadedData.Any())
+            if (!loadedData.SaveObjects.Any())
             {
                 Debug.Log("No data loaded!");
                 return false;
             }
-            var currentSceneData = SortLoadedData(loadedData);
-            Debug.Log($"Loaded!");
+            var currentSceneData = SortLoadedData(loadedData.SaveObjects);
+            Debug.Log($"Loaded {loadedData.SaveName}!");
             if (!currentSceneData.Any())
             {
                 Debug.Log("No data from current scene loaded!");
@@ -45,7 +43,7 @@ namespace SaveSystem.Core
         private List<Dictionary<string, string>> SortLoadedData(List<Dictionary<string, string>> loadedData)
         {
             otherSceneEntries.Clear();
-            var sceneIndex = SceneManager.GetActiveScene().buildIndex;
+            var sceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
             var currentSceneData = new List<Dictionary<string, string>>();
 
             foreach (var data in loadedData)
@@ -74,7 +72,7 @@ namespace SaveSystem.Core
                 state.AddRange(saveState.CaptureState());
             }
             state.AddRange(otherSceneEntries);
-            Debug.Log($"Saved!");
+            Debug.Log($"Save!");
             _saveLoader.Save(state, name);
         }
     }

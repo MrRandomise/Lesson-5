@@ -1,5 +1,6 @@
+using SaveSystem.Core;
 using System;
-using UnityEngine.SceneManagement;
+using TMPro;
 using Zenject;
 
 namespace SaveLoadCore.UIView
@@ -7,23 +8,26 @@ namespace SaveLoadCore.UIView
     public sealed class LoadObserver : IDisposable
     {
         private MainFomComponents _mainFomComponents;
-        //private SaveLoad _load;
+        private SceneSaveManager _sceneSaveManager;
         private SaveLoadSelectedItems _selectedItems;
+        private TMP_Text _menuButtonText;
 
         [Inject]
-        private void Construct(MainFomComponents mainFomComponents, SaveLoadSelectedItems selectedItems)
+        private void Construct(SceneSaveManager sceneSaveManager, MainFomComponents mainFomComponents, SaveLoadSelectedItems selectedItems, MenuButtonComponents menuButtonService)
         {
+            _sceneSaveManager = sceneSaveManager;
             _mainFomComponents = mainFomComponents;
             _mainFomComponents.LoadButton.onClick.AddListener(ClickLoadButton);
             _selectedItems = selectedItems;
-            //_load = saveLoad;
+            _menuButtonText = menuButtonService.MenuButtonText;
         }
 
         private void ClickLoadButton()
         {
             var name = _selectedItems.getSelectedItems().HideField.text;
-            //_load.TryLoadGameObject(name);
+            _sceneSaveManager.LoadScene(name);
             _mainFomComponents.SaveLoadMenu.SetActive(false);
+            _menuButtonText.text = "Открыть меню";
         }
 
         public void Dispose()

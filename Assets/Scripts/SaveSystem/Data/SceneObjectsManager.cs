@@ -1,14 +1,14 @@
 using GameEngine;
 using UnityEngine;
 
-namespace Core
+namespace SaveSystem.Core
 {
-    public class SceneStorage
+    public class SceneObjectsManager
     {
         private readonly UnitManager unitManager;
         private readonly ResourceService resourceService;
 
-        public SceneStorage(UnitManager manager, ResourceService service, Transform unitsRoot)
+        public SceneObjectsManager(UnitManager manager, ResourceService service, Transform unitsRoot)
         {
             unitManager = manager;
             resourceService = service;

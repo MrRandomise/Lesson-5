@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{F35891A2-C4EF-63FD-6D0C-38BB639980C8}</ProjectGuid>
+    <ProjectGuid>{3983E877-7F8C-B6A5-DEC8-0CBEF1BAE970}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Zenject-Editor</AssemblyName>
@@ -55,7 +55,7 @@
     <UnityVersion>2021.3.7f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Plugins\Zenject\Source\Editor\SceneParentLoading\SceneParentAutomaticLoader.cs" />
@@ -1016,7 +1016,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Zenject.csproj">
-      <Project>{E94CBC5A-5012-1BD3-67B2-D557726F6C42}</Project>
+      <Project>{9B4B8310-944D-DBF0-F7FF-8E50834F6049}</Project>
       <Name>Zenject</Name>
     </ProjectReference>
   </ItemGroup>

@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{5A3129BB-302E-A0CA-EF30-DFD0AFA044D7}</ProjectGuid>
+    <ProjectGuid>{320BF394-C5EA-9005-0584-39E2F6B7D599}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -55,14 +55,19 @@
     <UnityVersion>2021.3.7f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\SaveSystem\Data\UnitsPrefabStorage.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\FileSaverSystem\FileSystemSaverLoader.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Core\ISaveLoade.cs" />
     <Compile Include="Assets\Scripts\UIManagers\SaveForm.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\SaveLoadInfo.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\FileSaverSystem\Reader.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Core\SceneSaveManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Data\ResourceSavingManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\Scripts\Components\SaveFormComponents.cs" />
     <Compile Include="Assets\Scripts\UIManagers\LoadObserver.cs" />
@@ -75,6 +80,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Scripts\Installer\ViewInstaller.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Core\ISaveState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\Scripts\SaveSystem\Core\ScreenCamera.cs" />
     <Compile Include="Assets\Scripts\Installer\SaveLoadInstaller.cs" />
@@ -89,6 +95,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\Scripts\UIManagers\ReSaveObserver.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\FileSaverSystem\Saver.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\Scripts\Factory\ISaveLoadFactory.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
@@ -100,32 +107,25 @@
     <Compile Include="Assets\Scripts\Factory\SaveLoadFactory.cs" />
     <Compile Include="Assets\Scripts\Components\AcceptFormComponents.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Data\SceneObjectsManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Data\SaveLoadInfoManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\Scripts\Components\MenuButtonComponents.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Core\SavingSystem.cs" />
     <Compile Include="Assets\Scripts\UIManagers\SaveLoadSelectedItems.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\Core\ISaveState.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\Data\UnitsPrefabStorage.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\Data\ResourceSavingManager.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\Core\ISaveLoade.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\FileSaverSystem\Reader.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\Core\SceneSaveManager.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\Tools\SavingSystemHelper.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\FileSaverSystem\FileSystemSaverLoader.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\Data\UnitSavingStorage.cs" />
     <Compile Include="Assets\Scripts\SaveSystem\FileSaverSystem\AesEncryptionProvider.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\FileSaverSystem\Saver.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\Core\SavingSystem.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\Data\SceneStorage.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\Data\SaveFileStorage.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Data\UnitSavingManager.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Struct\SaveDataStruct.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Tools\FileNameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -1153,27 +1153,27 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="GameEngine.csproj">
-      <Project>{26570629-3C06-6ED3-091F-6196398029E3}</Project>
+      <Project>{CC0E5004-F283-2AF7-1A4D-1B5815F30E8A}</Project>
       <Name>GameEngine</Name>
     </ProjectReference>
     <ProjectReference Include="Zenject-Editor.csproj">
-      <Project>{F35891A2-C4EF-63FD-6D0C-38BB639980C8}</Project>
+      <Project>{3983E877-7F8C-B6A5-DEC8-0CBEF1BAE970}</Project>
       <Name>Zenject-Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
-      <Project>{6AE8AE6C-314B-1F8E-92A8-8BA3D62A6982}</Project>
+      <Project>{D99CF790-0969-A641-25E3-CAD7684733FA}</Project>
       <Name>Zenject-PoolMonitor-Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Sirenix.OdinInspector.Modules.UnityMathematics.csproj">
-      <Project>{764780BF-822A-A85C-0EB5-E181C2D89CB0}</Project>
+      <Project>{AD51A1F6-4AFB-643E-B4D3-1DD2B2B936B6}</Project>
       <Name>Sirenix.OdinInspector.Modules.UnityMathematics</Name>
     </ProjectReference>
     <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
-      <Project>{1F45836A-8150-F076-2311-07A225E64335}</Project>
+      <Project>{F6B6ED3E-14BA-DA6E-6428-4B54868AF5F6}</Project>
       <Name>Zenject-ReflectionBaking-Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Zenject.csproj">
-      <Project>{E94CBC5A-5012-1BD3-67B2-D557726F6C42}</Project>
+      <Project>{9B4B8310-944D-DBF0-F7FF-8E50834F6049}</Project>
       <Name>Zenject</Name>
     </ProjectReference>
   </ItemGroup>

@@ -1,3 +1,5 @@
+using SaveSystem.Core;
+using SaveSystem.Data;
 using System;
 using Zenject;
 
@@ -5,17 +7,19 @@ namespace SaveLoadCore.UIView
 {
     public sealed class SaveAcceptForm : IDisposable
     {
-        //private SaveLoadInfo _saveLoad;
+        private SaveLoadInfoManager _saveLoadInfoManager;
         private SaveFormComponents _saveFormComponents;
         private AcceptFormComponents _acceptFormComponents;
         private MainFomComponents _mainFomComponents;
         private SaveLoadSelectedItems _selectedItems;
         private LoadPreview _menuInitializeManager;
+        private SceneSaveManager _sceneSaveManager;
 
         [Inject]
-        private void Construct(MainFomComponents mainFomComponents, AcceptFormComponents acceptFormComponents, SaveFormComponents saveFormComponents, SaveLoadSelectedItems saveLoadSelectedItems, LoadPreview saveLoadMenuInitializeManager)
+        private void Construct(SaveLoadInfoManager saveLoadInfoManager, MainFomComponents mainFomComponents, AcceptFormComponents acceptFormComponents, SaveFormComponents saveFormComponents, SaveLoadSelectedItems saveLoadSelectedItems, LoadPreview saveLoadMenuInitializeManager, SceneSaveManager sceneSaveManager)
         {
-            //_saveLoad = saveLoad;
+            _saveLoadInfoManager = saveLoadInfoManager;
+            _sceneSaveManager = sceneSaveManager;
             _saveFormComponents = saveFormComponents;
             _acceptFormComponents = acceptFormComponents;
             _mainFomComponents = mainFomComponents;
@@ -37,7 +41,7 @@ namespace SaveLoadCore.UIView
                 name = _saveFormComponents.SaveFormInputName.text;
                 _saveFormComponents.SaveFormInputName.text = string.Empty;
             }
-            //_saveLoad.SaveInfo(name);
+            _sceneSaveManager.SaveScene(name);
             _menuInitializeManager.PreViewSave();
             _mainFomComponents.AcceptForm.SetActive(false);
         }

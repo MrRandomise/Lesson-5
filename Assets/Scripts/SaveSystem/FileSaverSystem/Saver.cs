@@ -6,7 +6,7 @@ namespace SaveSystem.FileSaverSystem
 {
     public class Saver
     {
-        public void Save(string[] data, string savename)
+        public void Save(string data, string savename)
         {
             if(File.Exists(savename))
             {
@@ -18,7 +18,7 @@ namespace SaveSystem.FileSaverSystem
                 StreamWriter sw = new StreamWriter(savename);
                 foreach (var entry in data)
                 {
-                    sw.WriteLine(entry);
+                    sw.Write(entry);
                 }
                 sw.Close();
             }

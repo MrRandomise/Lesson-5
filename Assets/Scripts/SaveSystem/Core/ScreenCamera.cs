@@ -29,7 +29,7 @@ namespace SaveSystem.Core
             }
             catch
             {
-                Debug.LogWarning("Что то пошло не так!");
+                Debug.LogWarning("not load screen camera!");
             }
             screen = null;
             return false;
