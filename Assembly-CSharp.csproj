@@ -125,8 +125,8 @@
     <Compile Include="Assets\Scripts\SaveSystem\Data\UnitSavingManager.cs" />
     <Compile Include="Assets\Scripts\SaveSystem\FileSaverSystem\AesEncryptionProvider.cs" />
     <Compile Include="Assets\Scripts\SaveSystem\FileSaverSystem\Saver.cs" />
-    <Compile Include="Assets\Scripts\SaveSystem\Core\SaveSystem.cs" />
-    <Compile Include="Assets\Scripts\Installer\SceneLoader.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Core\SavingSystem.cs" />
+    <Compile Include="Assets\Scripts\SaveSystem\Data\SceneStorage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

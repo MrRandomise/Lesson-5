@@ -6,8 +6,8 @@ namespace SaveSystem.FileSaverSystem
 {
     public class AesEncryptionProvider
     {
-        private const string Key = "A60B1812FE5E7AA200BA9CFC94E4E8B0"; //set any string of 32 chars
-        private const string Iv = "1234967887654111"; //set any string of 16 chars
+        private const string Key = "FRDN36C5C25TZ2F9K6ND0JWNG4GO742D"; 
+        private const string Iv = "1460352802516006"; 
         private readonly AesCryptoServiceProvider aesCryptoProvider;
 
         public AesEncryptionProvider()

@@ -1,3 +1,4 @@
+using UnityEngine;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using SaveSystem.Core;
@@ -6,40 +7,41 @@ namespace SaveSystem.FileSaverSystem
 {
     public class FileSystemSaverLoader : ISaveLoade
     {
-        private const string Filename = "MySaveGame.sav";
-        private readonly Reader reader;
-        private readonly Saver saver;
-        private readonly AesEncryptionProvider encryptionProvider = new();
-
+        private readonly AesEncryptionProvider _encryptionProvider = new();
+        private readonly Saver _saver;
+        private readonly Reader _reader;
         public FileSystemSaverLoader()
         {
-            reader = new Reader(Filename);
-            saver = new Saver(Filename);
+            _reader = new Reader();
+            _saver = new Saver();
         }
-        
-        public void Save(List<Dictionary<string, string>> data)
+
+        public void Save(List<Dictionary<string, string>> data, string filename)
         {
+            filename = $"{Application.dataPath}/Saves/{filename}.sav";
             var strList = new List<string>();
             foreach (var obj in data)
             {
                 var str = JsonConvert.SerializeObject(obj);
-                strList.Add(encryptionProvider.AesEncryption(str));
+                strList.Add(_encryptionProvider.AesEncryption(str));
             }
-            saver.Save(strList.ToArray());
+            Debug.Log(strList.Count);
+            _saver.Save(strList.ToArray(), filename);
         }
 
-        public List<Dictionary<string, string>> Load()
+        public List<Dictionary<string, string>> Load(string filename)
         {
+            filename = $"{Application.dataPath}/Saves/{filename}.sav";
             var result = new List<Dictionary<string, string>>();
-            if (!reader.IsSaveFileExist())
+            if (!_reader.IsSaveFileExist(filename))
             {
                 return result;
             }
 
-            var loadedData = reader.Load();
+            var loadedData = _reader.Load(filename);
             foreach (var data in loadedData)
             {
-                var obj = JsonConvert.DeserializeObject<Dictionary<string, string>>(encryptionProvider.AesDecryption(data));
+                var obj = JsonConvert.DeserializeObject<Dictionary<string, string>>(_encryptionProvider.AesDecryption(data));
                 if(obj != null) result.Add(obj);
             }
             return result;

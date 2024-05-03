@@ -11,23 +11,23 @@ namespace SaveSystem.Data
 {
     public class UnitSavingManager : ISaveState
     {
-        private readonly UnitManager unitsManager;
-        private readonly UnitsPrefabStorage prefabStorage;
-        private readonly List<Dictionary<string, string>> units = new();
-        private readonly Transform unitsRoot;
+        private readonly UnitManager _unitsManager;
+        private readonly UnitsPrefabStorage _prefabStorage;
+        private readonly List<Dictionary<string, string>> _units = new();
+        private readonly Transform _unitsRoot;
 
         public UnitSavingManager(UnitManager manager, UnitsPrefabStorage storage, Transform root)
         {
-            unitsManager = manager;
-            prefabStorage = storage;
-            unitsRoot = root;
+            _unitsManager = manager;
+            _prefabStorage = storage;
+            _unitsRoot = root;
         }
 
         public List<Dictionary<string, string>> CaptureState()
         {
-            units.Clear();
+            _units.Clear();
             var sceneIndex = SceneManager.GetActiveScene().buildIndex;
-            foreach (var unit in unitsManager.GetAllUnits())
+            foreach (var unit in _unitsManager.GetAllUnits())
             {
                 var state = new Dictionary<string, string>
                 {
@@ -39,13 +39,13 @@ namespace SaveSystem.Data
                     {"RotationZ", unit.Rotation.z.ToString()},
                     {"HP", unit.HitPoints.ToString()},
                     {"Type", unit.Type},
-                    {"SaveAbleType", "Unit"},
+                    {"StateType", "Unit"},
                     {"Scene", sceneIndex.ToString()}
                 };
-                units.Add(state);
+                _units.Add(state);
             }
 
-            return units;
+            return _units;
         }
 
         public void RestoreState(List<Dictionary<string, string>> loadedData)
@@ -54,9 +54,9 @@ namespace SaveSystem.Data
             InitUnitsList(loadedData);
 
             var unitsList = new List<Unit>();
-            foreach (var state in units)
+            foreach (var state in _units)
             {
-                var unitInstance = Object.Instantiate(prefabStorage.GetUnitPrefabByName(state["Type"]), unitsRoot, true);
+                var unitInstance = Object.Instantiate(_prefabStorage.GetUnitByName(state["Type"]), _unitsRoot, true);
                 unitInstance.transform.position = new Vector3(float.Parse(state["PositionX"]),
                     float.Parse(state["PositionY"]),float.Parse(state["PositionZ"]));
                 unitInstance.transform.eulerAngles = new Vector3(float.Parse(state["RotationX"]),
@@ -65,27 +65,27 @@ namespace SaveSystem.Data
                 unit.HitPoints = Convert.ToInt32(state["HP"]);
                 unitsList.Add(unit);
             }
-            unitsManager.SetupUnits(unitsList);
+            _unitsManager.SetupUnits(unitsList);
         }
 
         private void InitUnitsList(List<Dictionary<string, string>> loadedData)
         {
-            units.Clear();
+            _units.Clear();
             foreach (var data in loadedData)
             {
-                if (data["SaveAbleType"] == "Unit")
+                if (data["StateType"] == "Unit")
                 {
-                    units.Add(data);
+                    _units.Add(data);
                 }
             }
         }
 
         private void DestroyAllUnits()
         {
-            var unitList = unitsManager.GetAllUnits().ToList();
+            var unitList = _unitsManager.GetAllUnits().ToList();
             for(var i = 0; i < unitList.Count(); i++)
             {
-                unitsManager.DestroyUnit(unitList[i]);
+                _unitsManager.DestroyUnit(unitList[i]);
             }
             var existingUnits = Object.FindObjectsOfType<Unit>();
             foreach (var unit in existingUnits)

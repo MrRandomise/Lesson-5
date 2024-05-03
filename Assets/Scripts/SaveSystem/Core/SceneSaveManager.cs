@@ -1,36 +1,30 @@
 using System.Collections.Generic;
-using SaveSystem.Data;
-using UnityEngine;
 
 namespace SaveSystem.Core
 {  
     public class SceneSaveManager
     {
-        private readonly List<ISaveState> saveAbles;
-        private readonly SaveSystem savingSystem;
-        private readonly UnitsPrefabStorage prefabStorage;
+        private readonly List<ISaveState> _saveStates;
+        private readonly SavingSystem _savingSystem;
 
-        public SceneSaveManager(SaveSystem system, List<ISaveState> saveAblesList)
+        public SceneSaveManager(SavingSystem system, List<ISaveState> saveStatesList)
         {
-            savingSystem = system;
-            saveAbles = saveAblesList;
-            Debug.Log($"Found SaveAbles: {saveAbles.Count}");
+            _savingSystem = system;
+            _saveStates = saveStatesList;
         }
 
-        public bool LoadScene()
+        public bool LoadScene(string name)
         {
-            if (!savingSystem.RestoreState(saveAbles))
+            if (!_savingSystem.RestoreState(_saveStates, name))
             {
                 return false;
             }
-            Debug.Log("Scene restored");
             return true;
         }
 
-        public void SaveScene()
+        public void SaveScene(string name)
         {
-            savingSystem.CaptureState(saveAbles);
-            Debug.Log("Scene saved");
+            _savingSystem.CaptureState(_saveStates, name);
         }
     }
 }

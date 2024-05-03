@@ -2356,7 +2356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b30195530774198a17c549ed1b85bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: Orc_Archer
+  type: Orc_archer
   hitPoints: 8
 --- !u!1 &157296
 GameObject:

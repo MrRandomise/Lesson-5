@@ -8,6 +8,7 @@ namespace SaveSystem.Tools
     public class SavingSystemHelper : MonoBehaviour
     {
         private SceneSaveManager sceneSaveManager;
+
         [Inject]
         private void Construct(SceneSaveManager manager)
         {
@@ -17,13 +18,13 @@ namespace SaveSystem.Tools
         [Button]
         public void Load()
         {
-            sceneSaveManager.LoadScene();
+            sceneSaveManager.LoadScene("MySaveGame");
         }
 
         [Button]
         public void Save()
         {
-            sceneSaveManager.SaveScene();
+            sceneSaveManager.SaveScene("MySaveGame");
         }
     }
 }

@@ -6,26 +6,20 @@ namespace SaveSystem.FileSaverSystem
 {
     public class Reader
     {
-        private readonly string filename;
 
-        public Reader(string filename)
+        public bool IsSaveFileExist(string loadname)
         {
-            this.filename = filename;
+            return File.Exists(loadname);
         }
 
-        public bool IsSaveFileExist()
-        {
-            return File.Exists(filename);
-        }
-
-        public string[] Load()
+        public string[] Load(string loadname)
         {
             var resultList = new List<string>();
-            if (!IsSaveFileExist())
+            if (!IsSaveFileExist(loadname))
                 return resultList.ToArray();
             try
             {
-                StreamReader sr = new StreamReader(filename);
+                StreamReader sr = new StreamReader(loadname);
                 var line = sr.ReadLine();
                 while (line != null)
                 {

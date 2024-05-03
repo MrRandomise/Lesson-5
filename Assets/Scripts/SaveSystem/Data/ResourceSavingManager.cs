@@ -9,48 +9,48 @@ namespace SaveSystem.Data
 {
     public class ResourceSavingManager : ISaveState
     {
-        private readonly ResourceService resourceService;
-        private readonly List<Dictionary<string, string>> resources = new();
+        private readonly ResourceService _resourceService;
+        private readonly List<Dictionary<string, string>> _resources = new();
 
         public ResourceSavingManager(ResourceService service)
         {
-            resourceService = service;
+            _resourceService = service;
         }
         
         public List<Dictionary<string, string>> CaptureState()
         {
-            resources.Clear();
+            _resources.Clear();
             var sceneIndex = SceneManager.GetActiveScene().buildIndex;
-            foreach (var res in resourceService.GetResources())
+            foreach (var res in _resourceService.GetResources())
             {
                 var state = new Dictionary<string, string>
                 {
                     {"ID", res.ID},
                     {"Amount", res.Amount.ToString()},
-                    {"SaveAbleType", "Resource"},
+                    {"StateType", "Resource"},
                     {"Scene", sceneIndex.ToString()}
                 };
-                resources.Add(state);
+                _resources.Add(state);
             }
 
-            return resources;
+            return _resources;
         }
 
         public void RestoreState(List<Dictionary<string, string>> loadedData)
         {
-            resources.Clear();
+            _resources.Clear();
             var existingResources = Object.FindObjectsOfType<Resource>();
            
             foreach (var data in loadedData)
             {
-                if (data["SaveAbleType"] == "Resource")
+                if (data["StateType"] == "Resource")
                 {
-                    resources.Add(data);
+                    _resources.Add(data);
                 }
             }
             foreach (var res in existingResources)
             {
-                foreach (var resource in resources)
+                foreach (var resource in _resources)
                 {
                     if (res.ID == resource["ID"])
                     {
@@ -58,7 +58,7 @@ namespace SaveSystem.Data
                     }
                 }
             }
-            resourceService.SetResources(existingResources);
+            _resourceService.SetResources(existingResources);
         }
     }
 }

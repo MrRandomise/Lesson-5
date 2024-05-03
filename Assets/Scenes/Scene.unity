@@ -130,6 +130,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1263304700}
     m_Modifications:
+    - target: {fileID: -6780732715649493285, guid: 37773be3ffa21ce4a89a9ab8b6243a4e,
+        type: 3}
+      propertyPath: type
+      value: Orc_archer
+      objectReference: {fileID: 0}
     - target: {fileID: 156552, guid: 37773be3ffa21ce4a89a9ab8b6243a4e, type: 3}
       propertyPath: m_Name
       value: Orc_archer
@@ -286,6 +291,50 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 255190352}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &402710483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 402710485}
+  - component: {fileID: 402710484}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &402710484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402710483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6972b5d11363d4498da5d36fe20291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &402710485
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402710483}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 14.861353, y: 0.7245796, z: -2.923451}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &422399150 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 488926, guid: 091fdccaeaa7b2241a4c5998b2bfd5ec,
@@ -769,7 +818,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c868cc33270bd644ad85532430ed810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _saveObjects: []
   _menuButtonService:
     MenuButton: {fileID: 2073408870}
     MenuButtonText: {fileID: 2073408869}
@@ -802,6 +850,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6078af405b736459f546d3c5b8d598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabStorage: {fileID: -7674793994965018014, guid: 763d7df2aa43d9d4090e26766b4669a2,
+    type: 3}
+  unitManagerContainer: {fileID: 1263304700}
+  helper: {fileID: 402710484}
 --- !u!114 &1103775716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -848,7 +900,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1263304699
 GameObject:

@@ -6,7 +6,7 @@ namespace SaveSystem.Data
     {
         [SerializeField] private GameObject[] unitPrefabs;
 
-        public GameObject GetUnitPrefabByName(string prefabName)
+        public GameObject GetUnitByName(string prefabName)
         {
             foreach (var prefab in unitPrefabs)
             {
@@ -16,7 +16,7 @@ namespace SaveSystem.Data
                 }
             }
             
-            throw new System.Exception($"No prefab was found by name: {prefabName}");
+            throw new System.Exception($"No unit was found by name: {prefabName}");
         }
     }
 }

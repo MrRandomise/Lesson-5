@@ -6,23 +6,16 @@ namespace SaveSystem.FileSaverSystem
 {
     public class Saver
     {
-        private readonly string filename;
-
-        public Saver(string filename)
+        public void Save(string[] data, string savename)
         {
-            this.filename = filename;
-        }
-
-        public void Save(string[] data)
-        {
-            if(File.Exists(filename))
+            if(File.Exists(savename))
             {
-                File.Delete(filename);
+                File.Delete(savename);
             }
         
             try
             {
-                StreamWriter sw = new StreamWriter(filename);
+                StreamWriter sw = new StreamWriter(savename);
                 foreach (var entry in data)
                 {
                     sw.WriteLine(entry);
